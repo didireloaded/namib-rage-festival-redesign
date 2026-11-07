@@ -9,7 +9,7 @@ export const Route = createFileRoute("/namib-rage")({
     meta: [
       { title: "Namib Rage — The festival company" },
       { name: "description", content: "Home of Sound of Summer (28 Dec 2026) and Campout Dune Fest (31 Dec 2026). Plus Barbarian bars, Howler ticketing and Fast Track permits." },
-      { property: "og:title", content: "Namib Rage Events — We make Namibia come alive" },
+      { property: "og:title", content: "Namib Rage Events" },
       { property: "og:description", content: "Sound of Summer and Campout Dune Fest 2026 tickets, plus event services from Windhoek." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,8 +35,8 @@ function Home() {
           <Sticker className="absolute right-4 top-4 rotate-3 bg-camp text-camp-ink">{camp.dateSticker}</Sticker>
         </Link>
         <div className="pointer-events-none absolute inset-0 flex flex-col justify-end p-4 md:p-10">
-          <h1 className="display text-[15vw] leading-[0.82] text-cream drop-shadow-[0_2px_0_var(--ink)] md:text-[9.5vw]">
-            We make<br />Namibia<br /><span className="text-camp">come alive</span>
+          <h1 className="display text-[15vw] leading-[0.88] text-cream drop-shadow-[0_2px_0_var(--ink)] md:text-[11vw]">
+            Namib <span className="text-nr">Rage</span>
           </h1>
           <div className="pointer-events-auto mt-4 grid grid-cols-2 gap-2 md:mt-6 md:flex md:gap-3">
             <TicketLink f={sos} className="text-base md:text-xl">SoS 2026</TicketLink>
@@ -57,7 +57,6 @@ function Home() {
             </Link>
           ))}
         </div>
-        <p className="px-5 py-3 text-xs text-muted-foreground md:px-10">Two festivals we own. Three service divisions. One master brand. Wordmarks are placeholders for approved logo files.</p>
       </section>
 
       {/* FESTIVAL FEATURES */}

@@ -22,7 +22,7 @@ function Sos() {
         <Credit photo={f.hero} className="absolute right-2 top-2" />
         <div className="relative p-5 md:p-10">
           <Sticker className="bg-sos text-ink">28 Dec 2026</Sticker>
-          <Sticker className="ml-2 rotate-3 bg-sos-cyan text-ink">18+</Sticker>
+          <Sticker className="ml-2 rotate-3 bg-sos-coral text-ink">18+</Sticker>
           <h1 className="display mt-4 text-[17vw] leading-[0.82] md:text-[11rem]">Sound of<br /><span className="text-sos">Summer</span></h1>
           <p className="mt-3 text-lg">{f.venue}, {f.area} · {f.times}</p>
           <TicketLink f={f} className="mt-5 hidden md:inline-flex">Get tickets on Howler</TicketLink>
@@ -43,7 +43,7 @@ function Sos() {
           <p className="mt-6 text-sm text-muted-foreground">More artists announced once approved.</p>
         </div>
         <div id="stages" className="scroll-mt-24">
-          <h2 className="display text-5xl text-sos-cyan md:text-7xl">The stages</h2>
+          <h2 className="display text-5xl text-sos-coral md:text-7xl">The stages</h2>
           <ul className="mt-7 space-y-5">
             {sosStages.map((s) => (
               <li key={s.name} className="group border-b border-cream/25 pb-5">

@@ -22,13 +22,12 @@ function Services() {
         <p className="eyebrow text-muted-foreground">Three divisions</p>
         <h1 className="display mt-3 text-7xl md:text-[10rem]">Services</h1>
       </header>
-      {rows.map(({ k, line }, i) => {
+      {rows.map(({ k, line }) => {
         const b = brand(k);
         return (
           <Link key={k} to={b.to} className={cn("group flex flex-col justify-between gap-6 px-5 py-12 transition-all md:flex-row md:items-end md:px-10 md:py-16", b.accentClass, b.textOnAccent)}>
-            <div className="flex items-baseline gap-5">
-              <span className="display text-3xl opacity-70">0{i + 1}</span>
-              <Wordmark k={k} className="text-7xl transition-transform group-hover:translate-x-2 md:text-9xl" />
+            <div className="flex items-baseline">
+              <Wordmark k={k} className="text-[clamp(3.3rem,7vw,7rem)] leading-none transition-transform group-hover:translate-x-2" />
             </div>
             <p className="display text-2xl md:text-3xl">{line} →</p>
           </Link>

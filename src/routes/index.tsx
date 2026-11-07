@@ -1,111 +1,144 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { brands, photos, type BrandKey, type Photo } from "@/data/site";
-import { Media } from "@/components/site/Media";
 import { cn } from "@/lib/utils";
 
 /**
- * Immersive brand switchboard. It is a gateway, not a replacement for the
- * existing Namib Rage home, now reachable at /namib-rage.
- * Imagery for services is authentic Namib Rage event *atmosphere*, never
- * represented as proof of a particular service, crew or client.
+ * A single, minimal brand selector. Real event imagery only.
+ * Service photos remain Namib Rage event atmosphere until approved,
+ * service-specific media is provided.
  */
-const scenes: Record<BrandKey, { photo: Photo; caption: string }> = {
-  nr: { photo: photos.nrGallery1, caption: "Namib Rage · event archive" },
-  sos: { photo: photos.sosCrowd, caption: "Sound of Summer · past festival" },
-  camp: { photo: photos.campArt, caption: "Campout · official 2026 artwork" },
-  barb: { photo: photos.nrGallery4, caption: "Namib Rage archive · bar photography pending" },
-  howler: { photo: photos.nrGallery2, caption: "Namib Rage archive · Howler-specific imagery pending" },
-  ft: { photo: photos.nrGallery3, caption: "Namib Rage archive · Fast Track imagery pending" },
+const backgrounds: Record<BrandKey, Photo> = {
+  nr: photos.nrGallery1,
+  sos: photos.sosCrowd,
+  camp: photos.campArt,
+  barb: photos.nrGallery4,
+  howler: photos.nrGallery2,
+  ft: photos.nrGallery3,
 };
+
+function Background({ photo, eager = false }: { photo: Photo; eager?: boolean }) {
+  const srcSet = photo.resizable
+    ? [640, 1080, 1920].map((width) => [
+        photo.src.replace("w_1920", "w_" + width),
+        width + "w",
+      ].join(" ")).join(", ")
+    : undefined;
+
+  return (
+    <img
+      src={photo.src}
+      srcSet={srcSet}
+      sizes="100vw"
+      alt=""
+      aria-hidden="true"
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : "auto"}
+      decoding="async"
+      draggable={false}
+      className="absolute inset-0 h-full w-full object-cover"
+      onError={(event) => { event.currentTarget.style.visibility = "hidden"; }}
+    />
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Namib Rage — Choose your experience" },
-      { name: "description", content: "Explore Namib Rage, Sound of Summer, Campout Dune Fest, Barbarian Bar Management, Howler ticketing and Fast Track services." },
-      { property: "og:title", content: "Namib Rage — Choose your experience" },
+      { title: "Namib Rage — Brands, festivals and services" },
+      { name: "description", content: "Explore Namib Rage, Sound of Summer, Campout Dune Fest, Barbarian, Howler and Fast Track." },
+      { property: "og:title", content: "Namib Rage" },
       { property: "og:type", content: "website" },
     ],
   }),
-  component: BrandGateway,
+  component: BrandEntrance,
 });
 
-function BrandGateway() {
+function BrandEntrance() {
   const [active, setActive] = useState<BrandKey>("nr");
   const [previous, setPrevious] = useState<BrandKey | null>(null);
-  const selected = brands.find((b) => b.key === active) ?? brands[0];
+  const activeRef = useRef<BrandKey>("nr");
+  const activeIndex = brands.findIndex((item) => item.key === active);
 
   function preview(next: BrandKey) {
-    if (next === active) return;
-    setPrevious(active);
+    const current = activeRef.current;
+    if (next === current) return;
+    setPrevious(current);
     setActive(next);
+    activeRef.current = next;
   }
 
   useEffect(() => {
     if (!previous) return;
-    const timer = window.setTimeout(() => setPrevious(null), 440);
+    const timer = window.setTimeout(() => setPrevious(null), 420);
     return () => window.clearTimeout(timer);
   }, [active, previous]);
 
   return (
-    <section className="relative isolate flex min-h-svh flex-col overflow-hidden bg-ink text-cream" aria-label="Namib Rage brand entrance">
+    <section className="relative isolate grid min-h-svh place-items-center overflow-hidden bg-ink">
+      <h1 className="sr-only">Namib Rage brands</h1>
+
       {previous && (
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <Media photo={scenes[previous].photo} className="h-full w-full" />
+          <Background photo={backgrounds[previous]} />
         </div>
       )}
-      <div key={active} className="gateway-image pointer-events-none absolute inset-0" aria-hidden="true">
-        <Media photo={scenes[active].photo} priority={active === "nr"} className="h-full w-full" />
+      <div
+        key={active}
+        className="gateway-scene pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      >
+        <Background photo={backgrounds[active]} eager={active === "nr"} />
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-ink/60" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/50" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 bg-ink/40" aria-hidden="true" />
 
-      <div className="relative z-10 flex min-h-svh flex-col justify-between">
-        <header className="flex items-start justify-between gap-4 px-5 pb-8 pt-6 md:px-10 md:pt-9">
-          <span className="display text-3xl md:text-4xl">Namib<span className="text-nr">Rage</span></span>
-          <span className="hidden text-right text-sm font-semibold sm:block">Festivals · Event services<br />Windhoek, Namibia</span>
-          <span className="text-sm font-semibold sm:hidden">NAMIBIA</span>
-        </header>
-
-        <div className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col justify-end px-5 pb-9 pt-16 md:px-10 md:pb-14">
-          <p className="mb-4 text-sm font-semibold tracking-wide">Choose where to go</p>
-          <h1 className="display max-w-4xl text-[clamp(3.5rem,8.5vw,9rem)] leading-[0.92]">
-            One name.<br /><span className="text-camp">A whole lot happening.</span>
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/85">
-            Explore our festivals, the bars and ticketing behind major events, and the team that makes the details happen.
-          </p>
-
-          <nav aria-label="Choose a Namib Rage brand" className="mt-12 flex flex-col border-t border-cream/30 lg:grid lg:grid-cols-6 lg:gap-0">
-            {brands.map((b) => (
+      <nav
+        aria-label="Namib Rage brands"
+        className="relative z-10 mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 lg:px-10"
+      >
+        <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-6">
+          {brands.map((item) => {
+            const isActive = item.key === active;
+            return (
               <Link
-                key={b.key}
-                to={b.to}
-                onMouseEnter={() => preview(b.key)}
-                onFocus={() => preview(b.key)}
-                onTouchStart={() => preview(b.key)}
+                key={item.key}
+                to={item.to}
+                onMouseEnter={() => preview(item.key)}
+                onFocus={() => preview(item.key)}
+                onTouchStart={() => preview(item.key)}
+                data-preview-active={isActive || undefined}
                 className={cn(
-                  "group relative flex min-h-16 items-center justify-between gap-3 border-b border-cream/25 py-3 text-left outline-offset-[-4px] transition-colors duration-150 lg:min-h-32 lg:flex-col lg:items-start lg:justify-end lg:border-r lg:px-4 lg:py-5",
-                  selected.key === b.key ? "text-cream" : "text-cream/70 hover:text-cream",
+                  "gateway-brand group flex min-h-28 items-center justify-center px-3 py-6 text-center outline-offset-[-4px] sm:min-h-36 sm:px-4 lg:min-h-44",
+                  item.accentClass,
+                  item.textOnAccent,
                 )}
-                aria-current={selected.key === b.key ? "true" : undefined}
               >
-                <span className={cn("absolute left-0 top-0 h-[3px] w-0 transition-[width] duration-200 lg:left-4", selected.key === b.key && "w-16", b.accentClass)} aria-hidden="true" />
-                <span className="display max-w-full text-2xl leading-none sm:text-3xl lg:text-[clamp(1.15rem,1.9vw,2rem)] lg:leading-[1.04]">{b.name}</span>
-                <span className="flex items-center gap-3 text-right text-xs lg:w-full lg:justify-between lg:text-left">
-                  <span className="opacity-80">{b.role}</span>
-                  <span className="text-lg transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span>
-                </span>
+                {item.logo ? (
+                  <img src={item.logo} alt={item.name} className="max-h-20 max-w-full object-contain" />
+                ) : (
+                  <span className="display text-[clamp(1.4rem,3vw,2.8rem)] leading-[1.06]">
+                    {item.name}
+                  </span>
+                )}
               </Link>
-            ))}
-          </nav>
-          <div className="mt-5 flex flex-wrap justify-between gap-3 text-xs text-cream/70">
-            <span>Hover, focus or select a brand to explore.</span>
-            <span>{scenes[active].caption} · {scenes[active].photo.credit}</span>
-          </div>
+            );
+          })}
         </div>
-      </div>
+
+        <div className="mt-1 grid grid-cols-6 gap-1" aria-hidden="true">
+          {brands.map((item, index) => (
+            <span key={item.key} className="block h-1.5 overflow-hidden bg-cream/30">
+              <span
+                className={cn(
+                  "block h-full w-full origin-left transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  item.accentClass,
+                  index <= activeIndex ? "scale-x-100" : "scale-x-0",
+                )}
+              />
+            </span>
+          ))}
+        </div>
+      </nav>
     </section>
   );
 }

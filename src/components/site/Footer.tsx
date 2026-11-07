@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="bg-ink pb-28 pt-16 md:pb-12">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
-        <p className="display text-6xl text-cream md:text-[9rem]">We make Namibia<br /><span className="text-nr">come alive</span></p>
+        <p className="display text-6xl text-cream md:text-[9rem]">Namib <span className="text-nr">Rage</span></p>
         <div className="mt-12 grid gap-10 md:grid-cols-3">
           <div>
             <p className="eyebrow text-muted-foreground">The family</p>
