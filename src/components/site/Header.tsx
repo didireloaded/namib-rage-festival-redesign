@@ -50,7 +50,7 @@ function navigation(path: string): Context {
     action: { label: "Enquire", href: "#enquire" }, actionClass: "bg-ft text-cream",
   };
   return {
-    title: "Namib Rage", accent: "text-nr", links: generalLinks,
+    title: "Namib Rage", accent: "text-[#208ec7]", links: generalLinks,
     action: { label: "Tickets", href: "/festivals" }, actionClass: "bg-nr text-cream",
   };
 }
@@ -61,6 +61,7 @@ export function Header() {
   const menuButton = useRef<HTMLButtonElement>(null);
   const path = useRouterState({ select: (state) => state.location.pathname });
   const current = navigation(path);
+  const isNamibRage = path === "/namib-rage";
 
   useEffect(() => setOpen(false), [path]);
   useEffect(() => {
@@ -80,13 +81,25 @@ export function Header() {
   const external = current.action.href.startsWith("https://");
 
   return (
-    <header className={cn("sticky top-0 z-50 text-cream", path.startsWith("/festivals/sound-of-summer") ? "bg-sos-deep" : "bg-ink")}>
+    <header className={cn("sticky top-0 z-50", isNamibRage ? "bg-bone text-night" : path.startsWith("/festivals/sound-of-summer") ? "bg-sos-deep text-cream" : "bg-ink text-cream")}>
       <div className="mx-auto flex h-16 max-w-[1700px] items-center justify-between gap-3 px-4 md:px-10">
-        <Link to="/" className="shrink-0" aria-label="All Namib Rage brands"><img src="/brands/namib-rage-events.png" alt="Namib Rage Events" className="h-9 w-auto max-w-32 object-contain md:h-11 md:max-w-40" decoding="async" /></Link>
+        <Link to="/" className="shrink-0" aria-label="All Namib Rage brands">
+          <img
+            src={isNamibRage ? "/brands/namib-rage-events-blue-nav.png" : "/brands/namib-rage-events.png"}
+            alt="Namib Rage Events"
+            className="h-11 w-auto max-w-[140px] object-contain md:h-12 md:max-w-[170px]"
+            decoding="async"
+          />
+        </Link>
         <span className={cn("display min-w-0 truncate text-base sm:text-xl lg:text-2xl", current.accent)}>{current.title}</span>
         <nav className="hidden min-w-0 items-center gap-4 xl:flex" aria-label="Within this experience">
           {current.links.map((n) => (
-            <a key={n.href} href={n.href} className="whitespace-nowrap border-b-2 border-transparent pb-1 text-sm font-semibold text-cream/80 transition-[color,border-color] duration-150 hover:border-cream hover:text-cream focus-visible:text-cream">{n.label}</a>
+            <a key={n.href} href={n.href} className={cn(
+              "whitespace-nowrap border-b-2 border-transparent pb-1 text-sm font-semibold transition-[color,border-color] duration-150",
+              isNamibRage
+                ? "text-night/80 hover:border-night hover:text-night focus-visible:text-night"
+                : "text-cream/80 hover:border-cream hover:text-cream focus-visible:text-cream"
+            )}>{n.label}</a>
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
@@ -94,7 +107,7 @@ export function Header() {
             href={current.action.href}
             target={external ? "_blank" : undefined}
             rel={external ? "noopener noreferrer" : undefined}
-            className={cn("display px-3 py-2 text-base transition-opacity hover:opacity-85 md:px-4 md:text-lg", current.actionClass)}
+            className={cn("display px-3 py-2 text-base transition-opacity hover:opacity-85 md:px-4 md:text-lg", isNamibRage ? "bg-[#208ec7] text-white" : current.actionClass)}
           >
             {current.action.label}
           </a>
@@ -109,18 +122,18 @@ export function Header() {
           >
             {open ? <><X className="mr-2 inline-block size-4" aria-hidden="true" />Close</> : <><Menu className="mr-2 inline-block size-4" aria-hidden="true" />Menu</>}
           </button>
-          <Link to="/" className="hidden text-xs font-semibold text-cream/75 hover:text-cream xl:block">All brands <ArrowUpRight className="ml-1 inline-block size-4" aria-hidden="true" /></Link>
+          <Link to="/" className={cn("hidden text-xs font-semibold xl:block", isNamibRage ? "text-night/75 hover:text-night" : "text-cream/75 hover:text-cream")}>All brands <ArrowUpRight className="ml-1 inline-block size-4" aria-hidden="true" /></Link>
         </div>
       </div>
 
       {open && (
-        <nav id="experience-nav" aria-label="Mobile experience navigation" className={cn("nav-panel-enter fixed inset-x-0 bottom-0 top-16 overflow-y-auto px-5 pb-14 pt-6 xl:hidden", path.startsWith("/festivals/sound-of-summer") ? "bg-sos-deep" : "bg-ink")}>
-          <p className="mb-3 text-sm text-cream/60">Explore {current.title}</p>
+        <nav id="experience-nav" aria-label="Mobile experience navigation" className={cn("nav-panel-enter fixed inset-x-0 bottom-0 top-16 overflow-y-auto px-5 pb-14 pt-6 xl:hidden", isNamibRage ? "bg-bone text-night" : path.startsWith("/festivals/sound-of-summer") ? "bg-sos-deep text-cream" : "bg-ink text-cream")}>
+          <p className={cn("mb-3 text-sm", isNamibRage ? "text-night/65" : "text-cream/60")}>Explore {current.title}</p>
           {current.links.map((n) => (
-            <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="display block border-b border-cream/20 py-3 text-3xl text-cream">{n.label}</a>
+            <a key={n.href} href={n.href} onClick={() => setOpen(false)} className={cn("display block border-b py-3 text-3xl", isNamibRage ? "border-night/20 text-night" : "border-cream/20 text-cream")}>{n.label}</a>
           ))}
-          <p className="mb-3 mt-8 text-sm text-cream/60">Switch experience</p>
-          <Link to="/" className="display block py-3 text-3xl text-camp" onClick={() => setOpen(false)}>All brands <ArrowUpRight className="ml-1 inline-block size-5" aria-hidden="true" /></Link>
+          <p className={cn("mb-3 mt-8 text-sm", isNamibRage ? "text-night/65" : "text-cream/60")}>Switch experience</p>
+          <Link to="/" className={cn("display block py-3 text-3xl", isNamibRage ? "text-[#208ec7]" : "text-camp")} onClick={() => setOpen(false)}>All brands <ArrowUpRight className="ml-1 inline-block size-5" aria-hidden="true" /></Link>
           <Link to="/festivals/sound-of-summer" className="block py-2 text-lg text-sos" onClick={() => setOpen(false)}>Sound of Summer</Link>
           <Link to="/festivals/campout" className="block py-2 text-lg text-camp" onClick={() => setOpen(false)}>Campout Dune Fest</Link>
         </nav>
