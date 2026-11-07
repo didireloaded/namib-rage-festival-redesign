@@ -10,7 +10,7 @@ type StageKey = "savanna" | "coke-studio" | "jetty";
 const ids: StageKey[] = ["savanna", "coke-studio", "jetty"];
 const valid = (input: unknown): StageKey => ids.includes(input as StageKey) ? input as StageKey : "savanna";
 
-export const Route = createFileRoute("/festivals/sound-of-summer/stages")({
+export const Route = createFileRoute("/festivals/sound-of-summer_/stages")({
   validateSearch: (query: Record<string, unknown>) => ({ stage: valid(query.stage) }),
   head: () => seo("Sound of Summer stages", "Explore Savanna Main Stage, Coke Studio and Jetty at Sound of Summer."),
   component: Stages,
@@ -21,7 +21,7 @@ function Stages() {
   const index = ids.indexOf(stage);
   const selected = sosStages[index];
   const images = sosStageMedia[stage];
-  useEffect(() => window.scrollTo({top:0,behavior:"instant"}), [stage]);
+  useEffect(() => window.scrollTo({top:0,behavior:"auto"}), [stage]);
 
   return (
     <div className="min-h-svh bg-sos-deep text-cream">
