@@ -15,7 +15,7 @@ function Partners() {
     <>
       <section className="relative flex min-h-[70svh] flex-col justify-end overflow-hidden">
         <Media photo={photos.nrGallery2} priority className="absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink to-transparent" />
+        <div className="absolute inset-0 bg-night/55" />
         <Credit photo={photos.nrGallery2} className="absolute right-2 top-2" />
         <div className="relative p-5 md:p-10">
           <h1 className="display text-[16vw] leading-[0.85] md:text-[9rem]">Partner<br /><span className="text-nr">with the crowd</span></h1>

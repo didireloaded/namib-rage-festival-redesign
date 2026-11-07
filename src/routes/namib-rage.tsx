@@ -26,13 +26,13 @@ function Home() {
       {/* HERO: split stage */}
       <section className="relative grid h-[calc(100svh-4rem)] min-h-[560px] grid-rows-2 md:grid-cols-2 md:grid-rows-1">
         <Link to="/festivals/sound-of-summer" className="group relative overflow-hidden" aria-label="Sound of Summer 2026">
-          <Media photo={sos.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="transition-transform duration-700 group-hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
+          <Media photo={sos.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="" />
+          <div className="absolute inset-0 bg-night/50" />
           <Sticker className="sos-gradient-badge absolute right-4 top-4">{sos.dateSticker}</Sticker>
         </Link>
         <Link to="/festivals/campout" className="group relative overflow-hidden bg-camp-ink" aria-label="Campout Dune Fest 2026">
-          <Media photo={camp.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="transition-transform duration-700 group-hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
+          <Media photo={camp.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="" />
+          <div className="absolute inset-0 bg-night/55" />
           <Sticker className="absolute right-4 top-4 rotate-3 bg-camp text-camp-ink">{camp.dateSticker}</Sticker>
         </Link>
         <div className="pointer-events-none absolute inset-0 flex flex-col justify-end p-4 md:p-10">
@@ -97,7 +97,7 @@ function Home() {
             {poweredEvents.filter((event) => event.photo !== null).map((e) => (
               <li key={e.name} className="relative aspect-[4/3] overflow-hidden bg-barb">
                 {e.photo && <Media photo={e.photo} sizes="33vw" />}
-                <div className={cn("absolute inset-0 flex flex-col justify-end p-3", e.photo && "bg-gradient-to-t from-ink/80 to-transparent")}>
+                <div className={cn("absolute inset-0 flex flex-col justify-end p-3", e.photo && "bg-night/45")}>
                   <div className="flex gap-1">{e.roles.map((r) => <Chip key={r} k={e.by[0]} label={r === "Owned" ? "Owned festival" : "Barbarian · Bar operations"} />)}</div>
                   <p className="display mt-2 text-2xl text-cream md:text-4xl">{e.name}</p>
                 </div>

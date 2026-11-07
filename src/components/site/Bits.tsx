@@ -21,7 +21,7 @@ export function TicketLink({ f, className, children }: { f: Festival; className?
     <a
       href={f.ticketUrl} target="_blank" rel="noopener noreferrer"
       className={cn(
-        "display inline-flex items-center justify-center gap-2 px-5 py-3 text-lg transition-transform hover:-translate-y-0.5 active:translate-y-0",
+        "display inline-flex items-center justify-center gap-2 px-5 py-3 text-lg transition-colors hover:brightness-105",
         b.accentClass, b.textOnAccent, className,
       )}
     >
@@ -50,7 +50,7 @@ export function CtaLink({ to, children, variant = "light" }: { to: string; child
     <Link
       to={to}
       className={cn(
-        "display inline-flex items-center gap-2 px-5 py-3 text-lg transition-all hover:-translate-y-0.5",
+        "display inline-flex items-center gap-2 px-5 py-3 text-lg transition-colors hover:brightness-105",
         variant === "light" ? "bg-cream text-ink" : "border-2 border-cream text-cream hover:bg-cream hover:text-ink",
       )}
     >

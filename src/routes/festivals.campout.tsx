@@ -19,7 +19,7 @@ function Campout() {
     <>
       <section className="grid bg-camp-ink md:grid-cols-2">
         <div className="relative aspect-square overflow-hidden md:aspect-auto md:min-h-[calc(100svh-4rem)]">
-          <Media photo={f.hero} video={f.heroVideo} priority sizes="(min-width:768px) 50vw, 100vw" fit="contain" className="hero-depth" />
+          <Media photo={f.hero} video={f.heroVideo} priority sizes="(min-width:768px) 50vw, 100vw" fit="contain"  />
         </div>
         <div className="flex flex-col justify-center p-5 md:p-12">
           <div><Sticker className="bg-camp text-camp-ink">31 Dec 2026</Sticker></div>

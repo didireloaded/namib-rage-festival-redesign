@@ -34,7 +34,7 @@ export function EnquiryForm({ topic, accent = "bg-nr", options }: { topic: strin
         <label className="block md:col-span-2"><span className="eyebrow">Message</span><textarea required name="msg" rows={4} maxLength={4000} className={field} /></label>
         <p className="text-sm text-muted-foreground md:col-span-2">Your message is sent by your email provider. Read our <Link to="/privacy" className="underline underline-offset-4">privacy information</Link>.</p>
         <div className="md:col-span-2">
-          <button type="submit" className={cn("display inline-flex min-h-12 items-center gap-3 px-6 py-3 text-xl text-cream transition-transform hover:-translate-y-0.5",accent)}>
+          <button type="submit" className={cn("display inline-flex min-h-12 items-center gap-3 px-6 py-3 text-xl text-cream transition-colors hover:brightness-105",accent)}>
             <Mail className="size-5" strokeWidth={1.8} aria-hidden="true" /> Prepare enquiry email
             <ArrowUpRight className="size-5" strokeWidth={1.8} aria-hidden="true" />
           </button>

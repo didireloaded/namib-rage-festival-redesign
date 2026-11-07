@@ -15,7 +15,7 @@ function Work() {
     <>
       <section className="relative flex min-h-[55svh] flex-col justify-end overflow-hidden">
         <Media photo={photos.nrGallery3} priority className="absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink to-ink/10" />
+        <div className="absolute inset-0 bg-night/55" />
         <h1 className="display relative p-5 text-[17vw] leading-[0.85] md:p-10 md:text-[10rem]">Join<br /><span className="text-camp">the crew</span></h1>
       </section>
       <section className="grid md:grid-cols-3">
