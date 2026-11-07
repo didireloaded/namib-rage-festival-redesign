@@ -17,8 +17,8 @@ function Campout() {
   return (
     <>
       <section className="grid bg-camp-ink md:grid-cols-2">
-        <div className="relative aspect-square md:aspect-auto md:min-h-[calc(100svh-4rem)]">
-          <Media photo={f.hero} video={f.heroVideo} priority sizes="(min-width:768px) 50vw, 100vw" fit="contain" />
+        <div className="relative aspect-square overflow-hidden md:aspect-auto md:min-h-[calc(100svh-4rem)]">
+          <Media photo={f.hero} video={f.heroVideo} priority sizes="(min-width:768px) 50vw, 100vw" fit="contain" className="hero-depth" />
         </div>
         <div className="flex flex-col justify-center p-5 md:p-12">
           <div><Sticker className="bg-camp text-camp-ink">31 Dec 2026</Sticker></div>
@@ -31,7 +31,7 @@ function Campout() {
       <FactRow items={[["Dates", "31 Dec – 1 Jan"], ["Gates", "From 12:00"], ["Where", "Seukelduine"], ["Age", "18+ only"]]} />
       <p className="mx-auto max-w-7xl px-5 pt-4 text-sm text-muted-foreground md:px-10">Closing and music times are pending approval.</p>
 
-      <section id="camping" className="scroll-mt-24 bg-camp py-20 text-camp-ink">
+      <section data-reveal id="camping" className="scroll-mt-24 bg-camp py-20 text-camp-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="display text-5xl md:text-8xl">Camp like you care</h2>
           <ul className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-3">
@@ -46,10 +46,10 @@ function Campout() {
       </section>
 
       {campoutMedia.length > 0 && (
-        <section className="mx-auto max-w-7xl px-5 py-20 md:px-10"><Gallery items={campoutMedia} /></section>
+        <section data-reveal className="mx-auto max-w-7xl px-5 py-20 md:px-10"><Gallery items={campoutMedia} /></section>
       )}
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
+      <section data-reveal className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
         <div>
           <h2 id="getting-there" className="display scroll-mt-24 text-5xl md:text-7xl">How to get there</h2>
           <p className="mt-4 text-lg text-muted-foreground">Seukelduine lies in Dorob National Park on the coast near Swakopmund. Exact access route and parking details will be shared with ticket holders.</p>

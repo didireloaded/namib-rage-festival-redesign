@@ -17,7 +17,7 @@ function Sos() {
   return (
     <>
       <section className="relative flex h-[calc(100svh-4rem)] min-h-[560px] flex-col justify-end overflow-hidden bg-sos">
-        <Media photo={f.hero} video={f.heroVideo} priority className="absolute inset-0" />
+        <Media photo={f.hero} video={f.heroVideo} priority className="hero-depth absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
         <Credit photo={f.hero} className="absolute right-2 top-2" />
         <div className="relative p-5 md:p-10">
@@ -31,7 +31,7 @@ function Sos() {
 
       <FactRow items={[["Date", "28 Dec 2026"], ["Time", f.times], ["Where", "Langstrand"], ["Age", "18+ only"]]} />
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
+      <section data-reveal className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
         <div id="lineup" className="scroll-mt-24">
           <p className="eyebrow text-sos">Lineup</p>
           {sosLineup.map((a) => (
@@ -55,14 +55,14 @@ function Sos() {
         </div>
       </section>
 
-      <section id="gallery" className="scroll-mt-24 bg-sos py-16 text-ink">
+      <section data-reveal id="gallery" className="scroll-mt-24 bg-sos py-16 text-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="display mb-8 text-5xl md:text-7xl">From past summers</h2>
           <Gallery items={[photos.sosStage, photos.sosBeach, photos.sosCrowd, photos.nrGallery2, photos.nrGallery4]} />
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
+      <section data-reveal className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
         <div>
           <h2 id="getting-there" className="display scroll-mt-24 text-5xl md:text-7xl">Getting there</h2>
           <p className="mt-4 text-lg text-muted-foreground">Tidal Pools & Jetty Beach sit at Langstrand, between Walvis Bay and Swakopmund on the B2. Plan a designated driver or shared transport home.</p>

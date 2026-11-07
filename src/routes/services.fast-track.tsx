@@ -21,7 +21,7 @@ function FT() {
           <p className="max-w-lg text-lg">Professional permits, licences and travel coordination for events and visiting performers.</p>
         </div>
       </section>
-      <section id="services" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-16 md:px-10">
+      <section data-reveal id="services" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-16 md:px-10">
         <h2 className="display mb-8 text-4xl md:text-6xl">What we handle</h2>
         <ul className="grid gap-x-12 sm:grid-cols-2">
           {fastTrackServices.map((s) => (
@@ -31,7 +31,7 @@ function FT() {
           ))}
         </ul>
       </section>
-      <section id="process" className="scroll-mt-24 bg-cream py-16 text-ink">
+      <section data-reveal id="process" className="scroll-mt-24 bg-cream py-16 text-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="display text-5xl md:text-7xl">How it works</h2>
           <ol className="mt-10 grid gap-6 md:grid-cols-3">
@@ -44,7 +44,7 @@ function FT() {
           <p className="mt-8 text-sm">Approvals are decided by the relevant authorities; we can’t guarantee outcomes or timelines.</p>
         </div>
       </section>
-      <section id="enquire" className="mx-auto max-w-4xl px-5 py-20 md:px-10">
+      <section data-reveal id="enquire" className="mx-auto max-w-4xl px-5 py-20 md:px-10">
         <h2 className="display mb-10 text-5xl md:text-7xl">Enquire</h2>
         <EnquiryForm topic="Fast Track" accent="bg-ft" options={fastTrackServices} />
       </section>

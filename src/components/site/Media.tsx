@@ -63,10 +63,6 @@ export function Media({ photo, className, priority, sizes = "100vw", video, fit 
   );
 }
 
-export function Credit({ photo, className }: { photo: Photo; className?: string }) {
-  return (
-    <span className={cn("eyebrow bg-ink/80 px-2 py-1 text-[0.6rem] text-cream", className)}>
-      {photo.context} · {photo.credit}
-    </span>
-  );
+export function Credit({ photo }: { photo: Photo; className?: string }) {
+  return <span className="sr-only">{photo.context} · {photo.credit}</span>;
 }

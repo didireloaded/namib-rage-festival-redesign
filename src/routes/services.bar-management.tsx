@@ -22,7 +22,7 @@ function Barb() {
   return (
     <>
       <section className="relative flex min-h-[80svh] flex-col justify-end overflow-hidden bg-barb">
-        <Media photo={photos.nrGallery4} priority className="absolute inset-0 opacity-50 mix-blend-luminosity" />
+        <Media photo={photos.nrGallery4} priority className="hero-depth absolute inset-0 opacity-50 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-t from-barb via-barb/40 to-transparent" />
         <Credit photo={{ ...photos.nrGallery4, context: "Event bar operations · atmosphere" }} className="absolute right-2 top-2" />
         <div className="relative p-5 md:p-10">
@@ -32,7 +32,7 @@ function Barb() {
           <a href="#enquire" className="display mt-6 inline-block bg-barb-orange px-5 py-3 text-xl text-ink">Enquire →</a>
         </div>
       </section>
-      <section id="services" className="mx-auto grid max-w-7xl scroll-mt-24 gap-x-12 gap-y-8 px-5 py-16 md:grid-cols-2 md:px-10">
+      <section data-reveal id="services" className="mx-auto grid max-w-7xl scroll-mt-24 gap-x-12 gap-y-8 px-5 py-16 md:grid-cols-2 md:px-10">
         {pillars.map(([t, d]) => (
           <div key={t} className="border-t border-barb-orange/60 pt-5">
             <h2 className="display text-3xl md:text-5xl">{t}</h2>
@@ -40,7 +40,7 @@ function Barb() {
           </div>
         ))}
       </section>
-      <section id="events" className="scroll-mt-24 bg-barb-orange py-16 text-ink">
+      <section data-reveal id="events" className="scroll-mt-24 bg-barb-orange py-16 text-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <p className="eyebrow">Events powered · bars operated by Barbarian</p>
           <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
@@ -49,7 +49,7 @@ function Barb() {
           <div className="mt-6"><Chip k="barb" label="Bar operations only — not organised by Namib Rage" /></div>
         </div>
       </section>
-      <section id="enquire" className="mx-auto max-w-4xl px-5 py-20 md:px-10">
+      <section data-reveal id="enquire" className="mx-auto max-w-4xl px-5 py-20 md:px-10">
         <h2 className="display mb-10 text-5xl md:text-7xl">Bar enquiry</h2>
         <EnquiryForm topic="Bar management" accent="bg-barb" options={["Festival bar", "Corporate event", "Private event", "Other"]} />
       </section>

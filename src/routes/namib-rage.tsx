@@ -47,7 +47,7 @@ function Home() {
       </section>
 
       {/* SIX BRANDS */}
-      <section id="ecosystem" className="bg-ink">
+      <section data-reveal id="ecosystem" className="bg-ink">
         <div className="grid grid-cols-2 md:grid-cols-6">
           {brands.map((b) => (
             <Link key={b.key} to={b.to} className={cn("group flex min-h-36 flex-col justify-between p-4 transition-all hover:brightness-110", b.accentClass, b.textOnAccent)}>
@@ -64,7 +64,7 @@ function Home() {
       <FestivalBlock f={camp} flip extra={null} />
 
       {/* SERVICES */}
-      <section className="mx-auto max-w-7xl px-5 py-20 md:px-10">
+      <section data-reveal className="mx-auto max-w-7xl px-5 py-20 md:px-10">
         <p className="eyebrow text-muted-foreground">Behind the stage</p>
         <h2 className="display mt-3 text-5xl md:text-8xl">Services that run events</h2>
         <div className="mt-10 grid gap-3 md:grid-cols-12">
@@ -92,7 +92,7 @@ function Home() {
       </section>
 
       {/* EVENTS WE POWER */}
-      <section className="bg-cream py-20 text-ink">
+      <section data-reveal className="bg-cream py-20 text-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="display text-5xl md:text-8xl">Events we power</h2>
@@ -113,7 +113,7 @@ function Home() {
       </section>
 
       {/* SPONSORS */}
-      <section className="mx-auto max-w-7xl px-5 py-16 md:px-10">
+      <section data-reveal className="mx-auto max-w-7xl px-5 py-16 md:px-10">
         <h2 className="display text-4xl md:text-6xl">Partners & sponsors</h2>
         {sponsors.filter((s) => s.approved).length === 0 ? (
           <p className="mt-4 max-w-lg border-l-4 border-nr pl-4 text-muted-foreground">Sponsor logos appear here once approved by each partner.</p>
@@ -121,7 +121,7 @@ function Home() {
       </section>
 
       {/* CTA */}
-      <section className="grid md:grid-cols-2">
+      <section data-reveal className="grid md:grid-cols-2">
         <div className="relative min-h-80 overflow-hidden">
           <Media photo={photos.nrGallery1} sizes="50vw" />
           <div className="absolute inset-0 flex flex-col justify-end gap-4 bg-ink/50 p-6 md:p-10">
@@ -143,7 +143,7 @@ function Home() {
 function FestivalBlock({ f, flip, extra }: { f: (typeof festivals)[number]; flip: boolean; extra: typeof photos.sosBeach | null }) {
   const isSos = f.brand === "sos";
   return (
-    <section className={cn("grid md:grid-cols-12", isSos ? "bg-sos text-ink" : "bg-camp-ink text-cream")}>
+    <section data-reveal className={cn("grid md:grid-cols-12", isSos ? "bg-sos text-ink" : "bg-camp-ink text-cream")}>
       <div className={cn("relative aspect-[4/5] overflow-hidden md:col-span-7 md:aspect-auto md:min-h-[80vh]", flip && "md:order-2")}>
         <Media photo={f.hero} sizes="(min-width:768px) 58vw, 100vw" fit={isSos ? "cover" : "cover"} />
         <Credit photo={f.hero} className="absolute bottom-2 left-2" />

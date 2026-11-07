@@ -78,7 +78,7 @@ export function Header() {
         <span className={cn("display min-w-0 truncate text-base sm:text-xl lg:text-2xl", current.accent)}>{current.title}</span>
         <nav className="hidden min-w-0 items-center gap-4 xl:flex" aria-label="Within this experience">
           {current.links.map((n) => (
-            <a key={n.href} href={n.href} className="whitespace-nowrap text-sm font-semibold text-cream/80 transition-colors hover:text-cream focus-visible:text-cream">{n.label}</a>
+            <a key={n.href} href={n.href} className="whitespace-nowrap border-b-2 border-transparent pb-1 text-sm font-semibold text-cream/80 transition-[color,border-color] duration-150 hover:border-cream hover:text-cream focus-visible:text-cream">{n.label}</a>
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
@@ -106,7 +106,7 @@ export function Header() {
       </div>
 
       {open && (
-        <nav id="experience-nav" aria-label="Mobile experience navigation" className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-ink px-5 pb-14 pt-6 xl:hidden">
+        <nav id="experience-nav" aria-label="Mobile experience navigation" className="nav-panel-enter fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-ink px-5 pb-14 pt-6 xl:hidden">
           <p className="mb-3 text-sm text-cream/60">Explore {current.title}</p>
           {current.links.map((n) => (
             <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="display block border-b border-cream/20 py-3 text-3xl text-cream">{n.label}</a>
