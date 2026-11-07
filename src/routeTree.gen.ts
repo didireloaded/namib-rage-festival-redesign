@@ -23,6 +23,10 @@ import { Route as ServicesBarManagementRouteImport } from './routes/services.bar
 import { Route as ServicesFastTrackRouteImport } from './routes/services.fast-track'
 import { Route as ServicesTicketingCashlessRouteImport } from './routes/services.ticketing-cashless'
 
+import { Route as NamibRageRouteImport } from './routes/namib-rage'
+import { Route as EventsWePowerSlugRouteImport } from './routes/events-we-power_.$slug'
+import { Route as FestivalsSoundOfSummerStagesRouteImport } from './routes/festivals.sound-of-summer_.stages'
+
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -90,6 +94,22 @@ const ServicesTicketingCashlessRoute =
     getParentRoute: () => rootRouteImport,
   } as any)
 
+const NamibRageRoute = NamibRageRouteImport.update({
+  id: '/namib-rage',
+  path: '/namib-rage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsWePowerSlugRoute = EventsWePowerSlugRouteImport.update({
+  id: '/events-we-power_/$slug',
+  path: '/events-we-power/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FestivalsSoundOfSummerStagesRoute = FestivalsSoundOfSummerStagesRouteImport.update({
+  id: '/festivals/sound-of-summer_/stages',
+  path: '/festivals/sound-of-summer/stages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
@@ -104,6 +124,9 @@ export interface FileRoutesByFullPath {
   '/services/ticketing-cashless': typeof ServicesTicketingCashlessRoute
   '/festivals/': typeof FestivalsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/namib-rage': typeof NamibRageRoute
+  '/events-we-power/$slug': typeof EventsWePowerSlugRoute
+  '/festivals/sound-of-summer/stages': typeof FestivalsSoundOfSummerStagesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -119,6 +142,9 @@ export interface FileRoutesByTo {
   '/services/ticketing-cashless': typeof ServicesTicketingCashlessRoute
   '/festivals': typeof FestivalsIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/namib-rage': typeof NamibRageRoute
+  '/events-we-power/$slug': typeof EventsWePowerSlugRoute
+  '/festivals/sound-of-summer/stages': typeof FestivalsSoundOfSummerStagesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -135,6 +161,9 @@ export interface FileRoutesById {
   '/services/ticketing-cashless': typeof ServicesTicketingCashlessRoute
   '/festivals/': typeof FestivalsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/namib-rage': typeof NamibRageRoute
+  '/events-we-power_/$slug': typeof EventsWePowerSlugRoute
+  '/festivals/sound-of-summer_/stages': typeof FestivalsSoundOfSummerStagesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -152,6 +181,9 @@ export interface FileRouteTypes {
     | '/services/ticketing-cashless'
     | '/festivals/'
     | '/services/'
+    | '/namib-rage'
+    | '/events-we-power/$slug'
+    | '/festivals/sound-of-summer/stages'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -167,6 +199,9 @@ export interface FileRouteTypes {
     | '/services/ticketing-cashless'
     | '/festivals'
     | '/services'
+  // Registered standalone route: /namib-rage
+  // Registered standalone route: /events-we-power/$slug
+  // Registered standalone route: /festivals/sound-of-summer/stages
   id:
     | '__root__'
     | '/'
@@ -182,6 +217,9 @@ export interface FileRouteTypes {
     | '/services/ticketing-cashless'
     | '/festivals/'
     | '/services/'
+    | '/namib-rage'
+    | '/events-we-power_/$slug'
+    | '/festivals/sound-of-summer_/stages'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -198,6 +236,9 @@ export interface RootRouteChildren {
   ServicesTicketingCashlessRoute: typeof ServicesTicketingCashlessRoute
   FestivalsIndexRoute: typeof FestivalsIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  NamibRageRoute: typeof NamibRageRoute
+  EventsWePowerSlugRoute: typeof EventsWePowerSlugRoute
+  FestivalsSoundOfSummerStagesRoute: typeof FestivalsSoundOfSummerStagesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -293,6 +334,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesTicketingCashlessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/namib-rage': {
+      id: '/namib-rage'
+      path: '/namib-rage'
+      fullPath: '/namib-rage'
+      preLoaderRoute: typeof NamibRageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events-we-power_/$slug': {
+      id: '/events-we-power_/$slug'
+      path: '/events-we-power/$slug'
+      fullPath: '/events-we-power/$slug'
+      preLoaderRoute: typeof EventsWePowerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/festivals/sound-of-summer_/stages': {
+      id: '/festivals/sound-of-summer_/stages'
+      path: '/festivals/sound-of-summer/stages'
+      fullPath: '/festivals/sound-of-summer/stages'
+      preLoaderRoute: typeof FestivalsSoundOfSummerStagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -310,6 +372,9 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesTicketingCashlessRoute: ServicesTicketingCashlessRoute,
   FestivalsIndexRoute: FestivalsIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  NamibRageRoute: NamibRageRoute,
+  EventsWePowerSlugRoute: EventsWePowerSlugRoute,
+  FestivalsSoundOfSummerStagesRoute: FestivalsSoundOfSummerStagesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
