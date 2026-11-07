@@ -294,3 +294,18 @@
   --nr: oklch(0.62 0.22 255);
   --ft: oklch(0.48 0.2 262);
 }
+
+
+/* Namib Rage's two-scene scroll story. No snap locking or synthetic parallax. */
+.nr-story-title {
+  opacity: 1;
+  transform: none;
+  will-change: opacity, transform;
+}
+.nr-story a:focus-visible .nr-story-title {
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nr-story-title {opacity: 1 !important;transform: none !important;will-change: auto;}
+}

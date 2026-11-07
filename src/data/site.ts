@@ -140,10 +140,10 @@ export type PoweredEvent = {
 export const poweredEvents: PoweredEvent[] = [
   { name: "Sound of Summer", roles: ["Owned", "Ticketing"], by: ["nr", "howler"], photo: photos.sosStage, to: "/festivals/sound-of-summer" },
   { name: "Campout Dune Fest", roles: ["Owned", "Ticketing"], by: ["nr", "howler"], photo: photos.campArt, to: "/festivals/campout" },
-  { name: "Oktoberfest Namibia", roles: ["Bar operations"], by: ["barb"], photo: null },
-  { name: "Balcony Mix", roles: ["Bar operations"], by: ["barb"], photo: null },
-  { name: "KosFees", roles: ["Bar operations"], by: ["barb"], photo: null },
-  { name: "Liefde op die Nam", roles: ["Bar operations"], by: ["barb"], photo: null },
+  { name: "Oktoberfest Namibia", roles: ["Bar operations"], by: ["barb"], photo: null, to: "/events-we-power/oktoberfest-namibia" },
+  { name: "Balcony Mix", roles: ["Bar operations"], by: ["barb"], photo: null, to: "/events-we-power/balcony-mix" },
+  { name: "KosFees", roles: ["Bar operations"], by: ["barb"], photo: null, to: "/events-we-power/kosfees" },
+  { name: "Liefde op die Nam", roles: ["Bar operations"], by: ["barb"], photo: null, to: "/events-we-power/liefde-op-die-nam" },
 ];
 
 export type Sponsor = { name: string; logo: string; url?: string; approved: boolean };

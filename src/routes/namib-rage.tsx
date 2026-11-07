@@ -1,159 +1,178 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { brands, festivals, photos, poweredEvents } from "@/data/site";
 import { Credit, Media } from "@/components/site/Media";
-import { Chip, CtaLink, Sticker, TicketLink, Wordmark } from "@/components/site/Bits";
+import { CtaLink, Wordmark } from "@/components/site/Bits";
 import { cn } from "@/lib/utils";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/namib-rage")({
   head: () => ({
     meta: [
-      { title: "Namib Rage — The festival company" },
-      { name: "description", content: "Home of Sound of Summer (28 Dec 2026) and Campout Dune Fest (31 Dec 2026). Plus Barbarian bars, Howler ticketing and Fast Track permits." },
+      { title: "Namib Rage Events | Our Festivals & Event Services" },
+      { name: "description", content: "Explore Sound of Summer, Campout Dune Fest and the event services powered by Namib Rage." },
       { property: "og:title", content: "Namib Rage Events" },
-      { property: "og:description", content: "Sound of Summer and Campout Dune Fest 2026 tickets, plus event services from Windhoek." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
 });
 
-function Home() {
-  const [sos, camp] = festivals;
-  return (
-    <>
-      {/* HERO: split stage */}
-      <section className="relative grid h-[calc(100svh-4rem)] min-h-[560px] grid-rows-2 md:grid-cols-2 md:grid-rows-1">
-        <Link to="/festivals/sound-of-summer" className="group relative overflow-hidden" aria-label="Sound of Summer 2026">
-          <Media photo={sos.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="" />
-          <div className="absolute inset-0 bg-night/50" />
-          <Sticker className="sos-gradient-badge absolute right-4 top-4">{sos.dateSticker}</Sticker>
-        </Link>
-        <Link to="/festivals/campout" className="group relative overflow-hidden bg-camp-ink" aria-label="Campout Dune Fest 2026">
-          <Media photo={camp.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="" />
-          <div className="absolute inset-0 bg-night/55" />
-          <Sticker className="absolute right-4 top-4 rotate-3 bg-camp text-camp-ink">{camp.dateSticker}</Sticker>
-        </Link>
-        <div className="pointer-events-none absolute inset-0 flex flex-col justify-end p-4 md:p-10">
-          <h1 className="display text-[15vw] leading-[0.88] text-cream drop-shadow-[0_2px_0_var(--ink)] md:text-[11vw]">
-            Namib <span className="text-nr">Rage</span>
-          </h1>
-          <div className="pointer-events-auto mt-4 grid grid-cols-2 gap-2 md:mt-6 md:flex md:gap-3">
-            <TicketLink f={sos} className="text-base md:text-xl">SoS 2026</TicketLink>
-            <TicketLink f={camp} className="text-base md:text-xl">Campout 2026</TicketLink>
-          </div>
-          <a href="#ecosystem" className="pointer-events-auto eyebrow mt-4 hidden text-cream/80 hover:text-cream md:block">Scroll to explore <ArrowDown className="ml-2 inline-block size-4" aria-hidden="true" /></a>
-        </div>
-      </section>
+const [soundOfSummer, campout] = festivals;
 
-      {/* SIX BRANDS */}
-      <section data-reveal id="ecosystem" className="bg-ink">
-        <div className="grid grid-cols-2 md:grid-cols-6">
+/** Scroll-progress reveal without hijacking native scroll or adding a motion library. */
+function useStoryScroll() {
+  useEffect(() => {
+    const scenes = Array.from(document.querySelectorAll<HTMLElement>(".nr-story"));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      for (const scene of scenes) {
+        const title = scene.querySelector<HTMLElement>(".nr-story-title");
+        if (!title) continue;
+        if (reducedMotion.matches) {
+          title.style.opacity = "1";
+          title.style.transform = "none";
+          continue;
+        }
+        const rect = scene.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (64 - rect.top) / Math.max(180, window.innerHeight * .44)));
+        title.style.opacity = String(progress);
+        title.style.transform = "translate3d(0," + Math.round((1-progress)*52) + "px,0)";
+      }
+    };
+    const schedule = () => { if (!raf) raf = window.requestAnimationFrame(update); };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    reducedMotion.addEventListener("change", schedule);
+    update();
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      reducedMotion.removeEventListener("change", schedule);
+      window.cancelAnimationFrame(raf);
+      scenes.forEach(scene => {
+        const title=scene.querySelector<HTMLElement>(".nr-story-title");
+        title?.style.removeProperty("opacity");
+        title?.style.removeProperty("transform");
+      });
+    };
+  }, []);
+}
+
+function StoryScene({ type, index }: { type: "sos" | "camp"; index: number }) {
+  const isSummer = type === "sos";
+  const festival = isSummer ? soundOfSummer : campout;
+  // The Campout visual is genuine 2026 festival artwork until a cleared desert photo is supplied.
+  const photo = isSummer ? photos.sosBeach : photos.campArt;
+  const url = isSummer ? "/festivals/sound-of-summer" : "/festivals/campout";
+
+  return (
+    <section className={cn("nr-story relative h-[155svh]", isSummer ? "bg-sos-deep" : "bg-camp-ink")} aria-label={festival.name}>
+      <div className="sticky top-16 h-[calc(100svh-4rem)] min-h-[500px] overflow-hidden">
+        <Media photo={photo} priority={index===0} sizes="100vw" className="absolute inset-0" fit="cover"/>
+        <div className={cn("absolute inset-0", isSummer ? "bg-sos-deep/45" : "bg-camp-ink/40")} aria-hidden="true" />
+        <Link to={url} aria-label={"Explore " + festival.name} className="group absolute inset-0 z-10 flex flex-col items-start justify-end px-5 pb-16 pt-20 text-cream outline-offset-[-5px] sm:pb-20 md:px-12 md:pb-24">
+          <div className="nr-story-title max-w-[95vw]">
+            <p className={cn("mb-5 text-sm font-bold uppercase tracking-widest",isSummer?"text-sos-cyan":"text-camp")}>{isSummer?"Beach festival":"New Year's Eve in the dunes"}</p>
+            <h1 className={cn("display max-w-5xl text-[clamp(4.7rem,12vw,12rem)] leading-[.88]",isSummer?"text-cream":"text-camp")}>
+              <Wordmark k={type}/>
+            </h1>
+            <span className="mt-7 inline-flex items-center gap-3 border-b border-cream pb-2 text-lg font-semibold">Discover the festival <ArrowUpRight className="size-5" aria-hidden="true" /></span>
+          </div>
+        </Link>
+        {isSummer && (
+          <a href="#campout-story" className="absolute bottom-5 right-5 z-20 inline-flex items-center gap-2 text-sm font-semibold text-cream md:bottom-9 md:right-12">
+            Scroll to explore <ArrowDown className="size-5" aria-hidden="true" />
+          </a>
+        )}
+      </div>
+      {!isSummer && <span id="campout-story" className="absolute top-0" aria-hidden="true" />}
+    </section>
+  );
+}
+
+function Home() {
+  useStoryScroll();
+  return (
+    <div className="bg-night text-bone">
+      <StoryScene type="sos" index={0} />
+      <StoryScene type="camp" index={1} />
+
+      <section id="ecosystem" className="bg-night" aria-label="Namib Rage brands">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
           {brands.map((b) => (
-            <Link key={b.key} to={b.to} className={cn("group flex min-h-36 flex-col justify-between p-4 transition-all hover:brightness-110", b.accentClass, b.textOnAccent)}>
-              <span className="eyebrow text-[0.6rem] opacity-80">{b.role}</span>
-              <Wordmark k={b.key} className="text-2xl md:text-3xl" />
-              <span className="eyebrow text-[0.6rem] opacity-0 transition-opacity group-hover:opacity-100">Explore <ArrowRight className="inline-block size-3" aria-hidden="true" /></span>
+            <Link key={b.key} to={b.to} className={cn("group flex min-h-36 flex-col justify-between p-5 transition-colors hover:brightness-110",b.accentClass,b.textOnAccent)}>
+              <Wordmark k={b.key} className="text-2xl md:text-3xl"/>
+              <ArrowUpRight className="size-5" aria-hidden="true"/>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* FESTIVAL FEATURES */}
-      <FestivalBlock f={sos} flip={false} extra={photos.sosBeach} />
-      <FestivalBlock f={camp} flip extra={null} />
-
-      {/* SERVICES */}
-      <section data-reveal className="mx-auto max-w-7xl px-5 py-20 md:px-10">
-        <p className="eyebrow text-muted-foreground">Behind the stage</p>
-        <h2 className="display mt-3 text-5xl md:text-8xl">Services that run events</h2>
-        <div className="mt-10 grid gap-3 md:grid-cols-12">
-          <Link to="/services/bar-management" className="group flex min-h-72 flex-col justify-end bg-barb p-6 md:col-span-7 md:row-span-2">
-            <Wordmark k="barb" className="text-6xl md:text-8xl" />
-            <p className="mt-4 max-w-sm">Full-service event bars, from build to last call.</p>
-          </Link>
-          <Link to="/services/ticketing-cashless" className="group flex flex-col justify-between bg-howler p-6 md:col-span-5">
-            <span className="eyebrow">Ticketing partner</span>
-            <Wordmark k="howler" className="mt-10 text-6xl" />
-            <p className="mt-2">Tickets · access control · cashless.</p>
-          </Link>
-          <Link to="/services/fast-track" className="group flex flex-col justify-between bg-ft p-6 md:col-span-5">
-            <span className="eyebrow">Permits & bookings</span>
-            <Wordmark k="ft" className="mt-10 text-6xl" />
-            <p className="mt-2">Visas, licences, flights and artist bookings.</p>
-          </Link>
+      <section className="mx-auto max-w-[1500px] px-5 py-24 md:px-12 md:py-32" aria-label="Services that power events">
+        <p className="text-sm font-bold uppercase tracking-widest text-bone/70">Behind the stage</p>
+        <h2 className="display mb-14 mt-4 text-[clamp(3.4rem,8vw,8.5rem)]">Services that run events</h2>
+        <div className="space-y-1">
+          {([
+            ["barb","Full-service event bars"],
+            ["howler","Ticketing, access control and cashless"],
+            ["ft","Visas, permits and artist logistics"],
+          ] as const).map(([key,description])=>{
+            const b=brands.find(item=>item.key===key)!;
+            return <Link key={key} to={b.to} className="group flex min-h-32 flex-wrap items-end justify-between gap-5 border-t border-bone/30 py-6">
+              <div>
+                <Wordmark k={key} className="text-[clamp(3rem,7vw,7rem)]"/>
+                <p className="mt-3 text-base text-bone/65">{description}</p>
+              </div>
+              <ArrowRight className="size-7 transition-transform group-hover:translate-x-1" aria-hidden="true"/>
+            </Link>;
+          })}
         </div>
       </section>
 
-      {/* EVENTS WE POWER */}
-      <section data-reveal className="bg-cream py-20 text-ink">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="display text-5xl md:text-8xl">Events we power</h2>
-            <Link to="/events-we-power" className="display text-xl underline-offset-4 hover:underline">See all <ArrowRight className="inline-block size-5" aria-hidden="true" /></Link>
+      <section className="bg-bone px-5 py-24 text-night md:px-12" aria-label="Events we power">
+        <div className="mx-auto max-w-[1500px]">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <h2 className="display text-[clamp(3.4rem,8vw,8rem)]">Events we power</h2>
+            <Link to="/events-we-power" className="inline-flex items-center gap-2 border-b border-night pb-1 font-semibold">See all events <ArrowRight className="size-5" aria-hidden="true"/></Link>
           </div>
-          <ul className="mt-10 grid grid-cols-2 gap-2 md:grid-cols-3">
-            {poweredEvents.filter((event) => event.photo !== null).map((e) => (
-              <li key={e.name} className="relative aspect-[4/3] overflow-hidden bg-barb">
-                {e.photo && <Media photo={e.photo} sizes="33vw" />}
-                <div className={cn("absolute inset-0 flex flex-col justify-end p-3", e.photo && "bg-night/45")}>
-                  <div className="flex gap-1">{e.roles.map((r) => <Chip key={r} k={e.by[0]} label={r === "Owned" ? "Owned festival" : "Barbarian · Bar operations"} />)}</div>
-                  <p className="display mt-2 text-2xl text-cream md:text-4xl">{e.name}</p>
+          <div className="grid gap-x-10 md:grid-cols-2">
+            {poweredEvents.map(event=>(
+              <Link key={event.name} to={event.to ?? "/events-we-power"} className="group flex min-h-28 items-center justify-between gap-5 border-t border-night/25 py-5">
+                <div>
+                  <p className="display text-[clamp(2.2rem,4.4vw,4.8rem)] leading-none">{event.name}</p>
+                  <p className="mt-3 text-xs font-bold uppercase tracking-widest text-night/60">{event.roles.includes("Owned")?"Festival we own":"Barbarian bar operations"}</p>
                 </div>
-              </li>
+                <ArrowUpRight className="size-6 shrink-0" aria-hidden="true" />
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
-      {/* SPONSORS */}
-      <section data-reveal className="mx-auto max-w-7xl px-5 py-16 md:px-10">
-        <h2 className="display text-4xl md:text-6xl">Partners & sponsors</h2>
-        <p className="mt-4 max-w-lg text-muted-foreground">Collaborate with us to bring brands and festival audiences together.</p>
-        <Link to="/partners" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">Become a partner <ArrowRight className="size-4" aria-hidden="true" /></Link>
+      <section className="mx-auto max-w-[1500px] px-5 py-20 md:px-12 md:py-28">
+        <h2 className="display text-5xl md:text-8xl">Partnerships</h2>
+        <p className="mt-5 max-w-xl text-lg text-bone/70">Bring your brand into the experiences we create.</p>
+        <CtaLink to="/partners">Explore partnerships</CtaLink>
       </section>
 
-      {/* CTA */}
-      <section data-reveal className="grid md:grid-cols-2">
-        <div className="relative min-h-80 overflow-hidden">
-          <Media photo={photos.nrGallery1} sizes="50vw" />
-          <div className="absolute inset-0 flex flex-col justify-end gap-4 bg-ink/50 p-6 md:p-10">
+      <section className="grid md:grid-cols-2">
+        <div className="relative min-h-[380px] overflow-hidden">
+          <Media photo={photos.nrGallery1} sizes="(min-width:768px) 50vw,100vw" />
+          <div className="absolute inset-0 flex flex-col justify-end gap-5 bg-night/55 p-6 md:p-12">
             <h2 className="display text-5xl md:text-7xl">Partner with us</h2>
             <div><CtaLink to="/partners">Partnerships</CtaLink></div>
           </div>
-          <Credit photo={photos.nrGallery1} className="absolute right-2 top-2" />
+          <Credit photo={photos.nrGallery1}/>
         </div>
-        <div className="flex min-h-80 flex-col justify-end gap-4 bg-nr p-6 md:p-10">
+        <div className="flex min-h-[380px] flex-col justify-end gap-5 bg-nr p-6 md:p-12">
           <h2 className="display text-5xl md:text-7xl">Join the crew</h2>
-          <p className="max-w-sm">Bar staff, ticketing crew and vendors for the 2026 season.</p>
+          <p className="max-w-md text-lg">Bar staff, ticketing crew and vendors.</p>
           <div><CtaLink to="/work-with-us" variant="outline">Work with us</CtaLink></div>
         </div>
       </section>
-    </>
-  );
-}
-
-function FestivalBlock({ f, flip, extra }: { f: (typeof festivals)[number]; flip: boolean; extra: typeof photos.sosBeach | null }) {
-  const isSos = f.brand === "sos";
-  return (
-    <section data-reveal className={cn("grid md:grid-cols-12", isSos ? "bg-sos text-cream" : "bg-camp-ink text-cream")}>
-      <div className={cn("relative aspect-[4/5] overflow-hidden md:col-span-7 md:aspect-auto md:min-h-[80vh]", flip && "md:order-2")}>
-        <Media photo={f.hero} sizes="(min-width:768px) 58vw, 100vw" fit={isSos ? "cover" : "cover"} />
-        <Credit photo={f.hero} className="absolute bottom-2 left-2" />
-      </div>
-      <div className="flex flex-col justify-center gap-5 p-6 md:col-span-5 md:p-12">
-        <Sticker className={cn("self-start", isSos ? "sos-gradient-badge" : "bg-camp text-camp-ink")}>{f.dateSticker} 2026</Sticker>
-        <h2 className="display text-6xl md:text-8xl">{f.name}</h2>
-        <p className="text-lg">{f.tagline} {f.venue}, {f.area}. {f.age}.</p>
-        {extra && (
-          <div className="hidden aspect-video overflow-hidden md:block"><Media photo={extra} sizes="40vw" /></div>
-        )}
-        <div className="flex flex-wrap gap-3">
-          <TicketLink f={f} className={isSos ? "bg-sos-orange text-sos-deep" : ""}>Get tickets</TicketLink>
-          <Link to={isSos ? "/festivals/sound-of-summer" : "/festivals/campout"} className="display self-center text-lg underline underline-offset-4">Festival info <ArrowRight className="inline-block size-5" aria-hidden="true" /></Link>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }
