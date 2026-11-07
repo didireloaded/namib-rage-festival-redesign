@@ -32,9 +32,9 @@ export type Brand = {
 };
 
 export const brands: Brand[] = [
-  { key: "nr", name: "Namib Rage", short: "NR", role: "Master brand", to: "/namib-rage", logo: null, accentClass: "bg-nr", textOnAccent: "text-cream" },
+  { key: "nr", name: "Namib Rage", short: "NR", role: "Master brand", to: "/namib-rage", logo: "/brands/namib-rage-events.png", accentClass: "bg-nr", textOnAccent: "text-cream" },
   { key: "sos", name: "Sound of Summer", short: "SoS", role: "Owned festival", to: "/festivals/sound-of-summer", logo: null, accentClass: "bg-sos", textOnAccent: "text-cream" },
-  { key: "camp", name: "Campout Dune Fest", short: "Campout", role: "Owned festival", to: "/festivals/campout", logo: null, accentClass: "bg-camp", textOnAccent: "text-camp-ink" },
+  { key: "camp", name: "Campout Dune Fest", short: "Campout", role: "Owned festival", to: "/festivals/campout", logo: "/brands/dune-fest-2026.png", accentClass: "bg-camp", textOnAccent: "text-camp-ink" },
   { key: "barb", name: "Barbarian", short: "Bar Mgmt", role: "Service division", to: "/services/bar-management", logo: null, accentClass: "bg-barb", textOnAccent: "text-cream" },
   { key: "howler", name: "Howler", short: "Ticketing", role: "Ticketing & cashless partner", to: "/services/ticketing-cashless", logo: null, accentClass: "bg-howler", textOnAccent: "text-cream" },
   { key: "ft", name: "Fast Track", short: "Permits", role: "Service division", to: "/services/fast-track", logo: null, accentClass: "bg-ft", textOnAccent: "text-night" },

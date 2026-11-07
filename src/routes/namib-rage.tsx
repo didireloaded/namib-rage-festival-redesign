@@ -77,7 +77,9 @@ function StoryScene({ type, index }: { type: "sos" | "camp"; index: number }) {
           <div className="nr-story-title max-w-[95vw]">
             <p className={cn("mb-5 text-sm font-bold uppercase tracking-widest",isSummer?"text-sos-cyan":"text-camp")}>{isSummer?"Beach festival":"New Year's Eve in the dunes"}</p>
             <h1 className={cn("display max-w-5xl text-[clamp(4.7rem,12vw,12rem)] leading-[.88]",isSummer?"text-cream":"text-camp")}>
-              <Wordmark k={type}/>
+              {isSummer ? <Wordmark k="sos" /> : (
+                <img src="/brands/dune-fest-2026.png" alt="Campout Dune Fest" className="block h-auto max-h-[min(50vh,470px)] w-auto max-w-[min(85vw,640px)] object-contain" loading="lazy" decoding="async" />
+              )}
             </h1>
             <span className="mt-7 inline-flex items-center gap-3 border-b border-cream pb-2 text-lg font-semibold">Discover the festival <ArrowUpRight className="size-5" aria-hidden="true" /></span>
           </div>

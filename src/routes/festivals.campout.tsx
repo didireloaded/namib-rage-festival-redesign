@@ -22,7 +22,8 @@ function Campout() {
         <div className="absolute inset-0 bg-camp-ink/65" aria-hidden="true" />
         <div className="relative z-10 px-5 pb-12 pt-32 md:px-12 md:pb-20">
           <div><Sticker className="bg-camp text-camp-ink">31 Dec 2026</Sticker></div>
-          <h1 className="hero-title-in display mt-6 max-w-6xl text-[clamp(5rem,11vw,12rem)] leading-[.88] text-camp">Campout<br /><span className="text-cream">Dune Fest</span></h1>
+          <h1 className="sr-only">Campout Dune Fest</h1>
+          <img src="/brands/dune-fest-2026.png" alt="" aria-hidden="true" className="hero-title-in mt-6 block h-auto max-h-[min(48vh,480px)] w-auto max-w-[min(80vw,640px)] object-contain" decoding="async" fetchPriority="high" />
           <p className="mt-6 max-w-xl text-lg text-cream">{f.dateLong} · {f.venue}, {f.area} · 18+</p>
           <TicketLink f={f} className="mt-6 hidden self-start bg-camp text-camp-ink md:inline-flex">Get tickets on Howler</TicketLink>
         </div>

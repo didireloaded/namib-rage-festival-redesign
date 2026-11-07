@@ -82,7 +82,7 @@ export function Header() {
   return (
     <header className={cn("sticky top-0 z-50 text-cream", path.startsWith("/festivals/sound-of-summer") ? "bg-sos-deep" : "bg-ink")}>
       <div className="mx-auto flex h-16 max-w-[1700px] items-center justify-between gap-3 px-4 md:px-10">
-        <Link to="/" className="display shrink-0 text-xl md:text-2xl" aria-label="All Namib Rage brands">Namib<span className="text-nr">Rage</span></Link>
+        <Link to="/" className="shrink-0" aria-label="All Namib Rage brands"><img src="/brands/namib-rage-events.png" alt="Namib Rage Events" className="h-9 w-auto max-w-32 object-contain md:h-11 md:max-w-40" decoding="async" /></Link>
         <span className={cn("display min-w-0 truncate text-base sm:text-xl lg:text-2xl", current.accent)}>{current.title}</span>
         <nav className="hidden min-w-0 items-center gap-4 xl:flex" aria-label="Within this experience">
           {current.links.map((n) => (

@@ -12,7 +12,7 @@ export function Footer() {
         {isSos ? (
           <p className="display text-6xl text-cream md:text-[9rem]">Sound of <span className="sos-outline-title">Summer</span></p>
         ) : (
-          <p className="display text-6xl text-cream md:text-[9rem]">Namib <span className="text-nr">Rage</span></p>
+          <img src="/brands/namib-rage-events.png" alt="Namib Rage Events" className="h-auto max-h-52 w-auto max-w-[min(85vw,580px)] object-contain" loading="lazy" decoding="async" />
         )}
         <div className="mt-12 grid gap-10 md:grid-cols-3">
           <div>

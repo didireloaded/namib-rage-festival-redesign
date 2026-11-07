@@ -27,7 +27,9 @@ function Festivals() {
               <div className={cn("absolute inset-0", sos ? "sos-hero-wash" : "bg-night/55")} />
               <div className="relative p-6 md:p-10">
                 <span className={sos ? "text-sm font-bold uppercase tracking-widest text-sos-cyan" : "text-sm font-bold uppercase tracking-widest text-camp"}>{f.dateLong}</span>
-                <h2 className="display mt-4 text-6xl md:text-8xl">{f.name}</h2>
+                <h2 className="mt-4">
+                  {sos ? <span className="display block text-6xl md:text-8xl">{f.name}</span> : <img src="/brands/dune-fest-2026.png" alt="Campout Dune Fest" loading="lazy" decoding="async" className="block h-auto max-h-64 w-auto max-w-[min(72vw,440px)] object-contain" />}
+                </h2>
                 <p className="mt-2 text-cream/85">{f.venue}, {f.area} · {f.age}</p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <TicketLink f={f}>Tickets</TicketLink>
