@@ -199,9 +199,9 @@ export interface FileRouteTypes {
     | '/services/ticketing-cashless'
     | '/festivals'
     | '/services'
-  // Registered standalone route: /namib-rage
-  // Registered standalone route: /events-we-power/$slug
-  // Registered standalone route: /festivals/sound-of-summer/stages
+    | '/namib-rage'
+    | '/events-we-power/$slug'
+    | '/festivals/sound-of-summer/stages'
   id:
     | '__root__'
     | '/'
