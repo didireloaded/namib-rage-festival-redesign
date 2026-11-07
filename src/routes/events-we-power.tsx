@@ -43,7 +43,7 @@ function EventsWePower() {
             captions={withPhotos.map(event=>({
               title:event.name,
               role:filter === "Ticketing" ? "Howler ticketing" : event.roles.includes("Owned") ? "Namib Rage festival" : "Bar operations",
-              to:event.to,
+              ...(event.to ? { to: event.to } : {}),
             }))}
           />
         )}

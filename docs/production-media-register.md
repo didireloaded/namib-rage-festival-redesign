@@ -42,3 +42,11 @@ The supplied implementation directive expressly stops work before its Step 2 unt
 Changes in this asset-preparation step are limited to adding the homepage media slot, retaining null values, using the existing video poster/metadata behavior, and not rendering unrelated or fabricated media tiles. No approved website design, routes or content structure should be replaced based on a missing file.
 
 Once the media is approved, proceed with brand tokens, media-first sections and verification against 390×844 and 1440×900 screenshots, while preserving the six-brand architecture and all ticket links.
+
+## Design progress after instruction to proceed
+
+On 7 November 2026, the project owner instructed the team to proceed with the redesign using available genuine media rather than blocking all design work until footage arrives. The homepage, editorial service layouts, event gallery and Fast Track conversion flow were updated accordingly, without fabricating or misattributing media.
+
+The assets listed as **Awaiting source** above are still not supplied or approved, and all corresponding video fields remain `null`. No public video-loop completion, Campout gallery completion, Barbarian service photography or Howler operational image completion is claimed.
+
+Source-level static checks have passed for presence of the new homepage sections, photo-only gallery behaviour, reduced-motion video support, brand tokens, links and conversion controls. The connected Lovable project reports a ready build with no error. Full mobile/desktop visual screenshot checks at 390×844 and 1440×900 and independently executed local `npm run build` / `npm run test` have not been run in this workspace due unavailable browser execution and a network-isolated local environment. These remain release QA tasks.
