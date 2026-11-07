@@ -286,3 +286,11 @@
 /* Authentic Sound of Summer brand uses solids, not the generic gradient badge. */
 .sos-gradient-badge { background:var(--sos-orange)!important;color:var(--sos-deep); }
 .sos-hero-wash { background:rgba(4,28,104,.62)!important; }
+
+
+/* Gateway-only identity, preserving the previously approved coloured entrance.
+   Do not change the brand experiences or current 2026 festival palettes. */
+.gateway-restored {
+  --nr: oklch(0.62 0.22 255);
+  --ft: oklch(0.48 0.2 262);
+}

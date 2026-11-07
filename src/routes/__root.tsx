@@ -99,7 +99,7 @@ function RootComponent() {
       <main id="main" data-brand={path.startsWith("/festivals/sound-of-summer") ? "sos" : path.startsWith("/festivals/campout") ? "camp" : path.includes("bar-management") ? "barb" : path.includes("ticketing-cashless") ? "howler" : path.includes("fast-track") ? "ft" : "nr"} className={isGateway ? "" : "page-in"}>
         <Outlet />
       </main>
-      <Footer />
+      {!isGateway && <Footer />}
     </QueryClientProvider>
   );
 }
