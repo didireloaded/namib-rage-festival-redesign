@@ -10,33 +10,194 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as EventsWePowerRouteImport } from './routes/events-we-power'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as WorkWithUsRouteImport } from './routes/work-with-us'
+import { Route as FestivalsIndexRouteImport } from './routes/festivals.index'
+import { Route as FestivalsCampoutRouteImport } from './routes/festivals.campout'
+import { Route as FestivalsSoundOfSummerRouteImport } from './routes/festivals.sound-of-summer'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesBarManagementRouteImport } from './routes/services.bar-management'
+import { Route as ServicesFastTrackRouteImport } from './routes/services.fast-track'
+import { Route as ServicesTicketingCashlessRouteImport } from './routes/services.ticketing-cashless'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsWePowerRoute = EventsWePowerRouteImport.update({
+  id: '/events-we-power',
+  path: '/events-we-power',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkWithUsRoute = WorkWithUsRouteImport.update({
+  id: '/work-with-us',
+  path: '/work-with-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FestivalsIndexRoute = FestivalsIndexRouteImport.update({
+  id: '/festivals/',
+  path: '/festivals/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FestivalsCampoutRoute = FestivalsCampoutRouteImport.update({
+  id: '/festivals/campout',
+  path: '/festivals/campout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FestivalsSoundOfSummerRoute = FestivalsSoundOfSummerRouteImport.update({
+  id: '/festivals/sound-of-summer',
+  path: '/festivals/sound-of-summer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesBarManagementRoute = ServicesBarManagementRouteImport.update({
+  id: '/services/bar-management',
+  path: '/services/bar-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesFastTrackRoute = ServicesFastTrackRouteImport.update({
+  id: '/services/fast-track',
+  path: '/services/fast-track',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesTicketingCashlessRoute =
+  ServicesTicketingCashlessRouteImport.update({
+    id: '/services/ticketing-cashless',
+    path: '/services/ticketing-cashless',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/events-we-power': typeof EventsWePowerRoute
+  '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
+  '/work-with-us': typeof WorkWithUsRoute
+  '/festivals/campout': typeof FestivalsCampoutRoute
+  '/festivals/sound-of-summer': typeof FestivalsSoundOfSummerRoute
+  '/services/bar-management': typeof ServicesBarManagementRoute
+  '/services/fast-track': typeof ServicesFastTrackRoute
+  '/services/ticketing-cashless': typeof ServicesTicketingCashlessRoute
+  '/festivals/': typeof FestivalsIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/events-we-power': typeof EventsWePowerRoute
+  '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
+  '/work-with-us': typeof WorkWithUsRoute
+  '/festivals/campout': typeof FestivalsCampoutRoute
+  '/festivals/sound-of-summer': typeof FestivalsSoundOfSummerRoute
+  '/services/bar-management': typeof ServicesBarManagementRoute
+  '/services/fast-track': typeof ServicesFastTrackRoute
+  '/services/ticketing-cashless': typeof ServicesTicketingCashlessRoute
+  '/festivals': typeof FestivalsIndexRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/events-we-power': typeof EventsWePowerRoute
+  '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
+  '/work-with-us': typeof WorkWithUsRoute
+  '/festivals/campout': typeof FestivalsCampoutRoute
+  '/festivals/sound-of-summer': typeof FestivalsSoundOfSummerRoute
+  '/services/bar-management': typeof ServicesBarManagementRoute
+  '/services/fast-track': typeof ServicesFastTrackRoute
+  '/services/ticketing-cashless': typeof ServicesTicketingCashlessRoute
+  '/festivals/': typeof FestivalsIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/events-we-power'
+    | '/partners'
+    | '/privacy'
+    | '/work-with-us'
+    | '/festivals/campout'
+    | '/festivals/sound-of-summer'
+    | '/services/bar-management'
+    | '/services/fast-track'
+    | '/services/ticketing-cashless'
+    | '/festivals/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/events-we-power'
+    | '/partners'
+    | '/privacy'
+    | '/work-with-us'
+    | '/festivals/campout'
+    | '/festivals/sound-of-summer'
+    | '/services/bar-management'
+    | '/services/fast-track'
+    | '/services/ticketing-cashless'
+    | '/festivals'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/events-we-power'
+    | '/partners'
+    | '/privacy'
+    | '/work-with-us'
+    | '/festivals/campout'
+    | '/festivals/sound-of-summer'
+    | '/services/bar-management'
+    | '/services/fast-track'
+    | '/services/ticketing-cashless'
+    | '/festivals/'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  EventsWePowerRoute: typeof EventsWePowerRoute
+  PartnersRoute: typeof PartnersRoute
+  PrivacyRoute: typeof PrivacyRoute
+  WorkWithUsRoute: typeof WorkWithUsRoute
+  FestivalsCampoutRoute: typeof FestivalsCampoutRoute
+  FestivalsSoundOfSummerRoute: typeof FestivalsSoundOfSummerRoute
+  ServicesBarManagementRoute: typeof ServicesBarManagementRoute
+  ServicesFastTrackRoute: typeof ServicesFastTrackRoute
+  ServicesTicketingCashlessRoute: typeof ServicesTicketingCashlessRoute
+  FestivalsIndexRoute: typeof FestivalsIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +209,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events-we-power': {
+      id: '/events-we-power'
+      path: '/events-we-power'
+      fullPath: '/events-we-power'
+      preLoaderRoute: typeof EventsWePowerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work-with-us': {
+      id: '/work-with-us'
+      path: '/work-with-us'
+      fullPath: '/work-with-us'
+      preLoaderRoute: typeof WorkWithUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/festivals/': {
+      id: '/festivals/'
+      path: '/festivals'
+      fullPath: '/festivals/'
+      preLoaderRoute: typeof FestivalsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/festivals/campout': {
+      id: '/festivals/campout'
+      path: '/festivals/campout'
+      fullPath: '/festivals/campout'
+      preLoaderRoute: typeof FestivalsCampoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/festivals/sound-of-summer': {
+      id: '/festivals/sound-of-summer'
+      path: '/festivals/sound-of-summer'
+      fullPath: '/festivals/sound-of-summer'
+      preLoaderRoute: typeof FestivalsSoundOfSummerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/bar-management': {
+      id: '/services/bar-management'
+      path: '/services/bar-management'
+      fullPath: '/services/bar-management'
+      preLoaderRoute: typeof ServicesBarManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/fast-track': {
+      id: '/services/fast-track'
+      path: '/services/fast-track'
+      fullPath: '/services/fast-track'
+      preLoaderRoute: typeof ServicesFastTrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/ticketing-cashless': {
+      id: '/services/ticketing-cashless'
+      path: '/services/ticketing-cashless'
+      fullPath: '/services/ticketing-cashless'
+      preLoaderRoute: typeof ServicesTicketingCashlessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  EventsWePowerRoute: EventsWePowerRoute,
+  PartnersRoute: PartnersRoute,
+  PrivacyRoute: PrivacyRoute,
+  WorkWithUsRoute: WorkWithUsRoute,
+  FestivalsCampoutRoute: FestivalsCampoutRoute,
+  FestivalsSoundOfSummerRoute: FestivalsSoundOfSummerRoute,
+  ServicesBarManagementRoute: ServicesBarManagementRoute,
+  ServicesFastTrackRoute: ServicesFastTrackRoute,
+  ServicesTicketingCashlessRoute: ServicesTicketingCashlessRoute,
+  FestivalsIndexRoute: FestivalsIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
