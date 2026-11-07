@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { photos, poweredEvents } from "@/data/site";
-import { Credit, Media } from "@/components/site/Media";
+import { poweredEvents } from "@/data/site";
 import { Chip, Wordmark } from "@/components/site/Bits";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { seo } from "@/lib/seo";
@@ -23,9 +22,7 @@ function Barb() {
   return (
     <>
       <section className="relative flex min-h-[80svh] flex-col justify-end overflow-hidden bg-barb">
-        <Media photo={photos.nrGallery4} priority className="hero-depth absolute inset-0 opacity-50 mix-blend-luminosity" />
-        <div className="absolute inset-0 bg-gradient-to-t from-barb via-barb/40 to-transparent" />
-        <Credit photo={{ ...photos.nrGallery4, context: "Event bar operations · atmosphere" }} className="absolute right-2 top-2" />
+
         <div className="relative p-5 md:p-10">
           <p className="eyebrow text-barb-orange">Service division · Bar management</p>
           <Wordmark k="barb" className="mt-3 block text-[18vw] md:text-[11rem]" />

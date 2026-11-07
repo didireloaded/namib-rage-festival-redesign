@@ -69,15 +69,9 @@ function Home() {
         <p className="eyebrow text-muted-foreground">Behind the stage</p>
         <h2 className="display mt-3 text-5xl md:text-8xl">Services that run events</h2>
         <div className="mt-10 grid gap-3 md:grid-cols-12">
-          <Link to="/services/bar-management" className="group relative overflow-hidden bg-barb md:col-span-7 md:row-span-2">
-            <div className="aspect-[4/3] md:aspect-auto md:h-full">
-              <Media photo={photos.nrGallery3} sizes="(min-width:768px) 58vw, 100vw" className="opacity-60 mix-blend-luminosity transition-transform duration-700 group-hover:scale-105" />
-            </div>
-            <div className="absolute inset-0 flex flex-col justify-end p-6">
-              <span className="eyebrow text-barb-orange">Event bar operations · atmosphere photo</span>
-              <Wordmark k="barb" className="mt-2 text-6xl md:text-8xl" />
-              <p className="mt-2 max-w-sm">Full-service event bars, from build to last call.</p>
-            </div>
+          <Link to="/services/bar-management" className="group flex min-h-72 flex-col justify-end bg-barb p-6 md:col-span-7 md:row-span-2">
+            <Wordmark k="barb" className="text-6xl md:text-8xl" />
+            <p className="mt-4 max-w-sm">Full-service event bars, from build to last call.</p>
           </Link>
           <Link to="/services/ticketing-cashless" className="group flex flex-col justify-between bg-howler p-6 md:col-span-5">
             <span className="eyebrow">Ticketing partner</span>
@@ -100,7 +94,7 @@ function Home() {
             <Link to="/events-we-power" className="display text-xl underline-offset-4 hover:underline">See all <ArrowRight className="inline-block size-5" aria-hidden="true" /></Link>
           </div>
           <ul className="mt-10 grid grid-cols-2 gap-2 md:grid-cols-3">
-            {poweredEvents.map((e) => (
+            {poweredEvents.filter((event) => event.photo !== null).map((e) => (
               <li key={e.name} className="relative aspect-[4/3] overflow-hidden bg-barb">
                 {e.photo && <Media photo={e.photo} sizes="33vw" />}
                 <div className={cn("absolute inset-0 flex flex-col justify-end p-3", e.photo && "bg-gradient-to-t from-ink/80 to-transparent")}>
