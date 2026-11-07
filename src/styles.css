@@ -7,6 +7,9 @@
 /* Brand accents other than Howler magenta are PROPOSED palettes, editable here. */
 @theme inline {
   --font-display: "Anton", "Impact", sans-serif;
+  --color-night: #0B0B0F;
+  --color-bone: #F5F0E8;
+  --color-amber: #FF5A1F;
   --font-sans: "Archivo", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
@@ -48,9 +51,9 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.14 0.008 260);
-  --foreground: oklch(0.96 0.02 85);
+  --radius: 0rem;
+  --background: #0B0B0F;
+  --foreground: #F5F0E8;
   --card: oklch(0.19 0.01 260);
   --card-foreground: oklch(0.96 0.02 85);
   --popover: oklch(0.19 0.01 260);
@@ -68,9 +71,9 @@
   --border: oklch(0.96 0.02 85 / 16%);
   --input: oklch(0.96 0.02 85 / 25%);
   --ring: oklch(0.84 0.17 90);
-  --cream: oklch(0.95 0.03 85);
-  --ink: oklch(0.12 0.008 260);
-  --nr: oklch(0.62 0.22 255);
+  --cream: #F5F0E8;
+  --ink: #0B0B0F;
+  --nr: #FF5A1F;
   /* Sound of Summer 2026 — sampled/visually matched to the user-supplied campaign poster.
      These are website tokens, not a claim to be official supplied brand hex codes. */
   --sos: #102bb7;
@@ -84,7 +87,7 @@
   --barb: oklch(0.36 0.12 25);
   --barb-orange: oklch(0.66 0.18 45);
   --howler: #f03233;
-  --ft: oklch(0.48 0.2 262);
+  --ft: #CBF25C;
 }
 
 @layer base {
@@ -128,12 +131,11 @@
 }
 
 @utility page-in {
-  animation: page-in 0.5s ease-out both;
+  animation: page-in 220ms ease-out both;
 }
-
 @keyframes page-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 
@@ -258,4 +260,21 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .sos-outline-title { transition: none; }
+}
+
+
+/* Event editorial system. Fixed brand colours, no decoration-only effects. */
+:root {
+  --color-night:#0B0B0F;
+  --color-bone:#F5F0E8;
+  --color-amber:#FF5A1F;
+}
+.hero-depth { transform:none!important; will-change:auto!important; }
+.motion-pending,.motion-entered { opacity:1!important;transform:none!important;animation:none!important; }
+.gallery-thumb img,.gallery-thumb:hover img,.gallery-thumb:focus-visible img { transition:none!important;transform:none!important; }
+.gateway-brand:active { transform:none; }
+#main[data-brand="nr"] { --background:#0B0B0F; --foreground:#F5F0E8; }
+@media (prefers-reduced-motion:reduce) {
+ .gateway-scene {animation:none;}
+ .page-in {animation:none;}
 }

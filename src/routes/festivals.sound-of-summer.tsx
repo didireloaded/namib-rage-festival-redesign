@@ -18,8 +18,8 @@ function Sos() {
   return (
     <>
       <section className="relative flex h-[calc(100svh-4rem)] min-h-[560px] flex-col justify-end overflow-hidden bg-sos-deep">
-        <Media photo={f.hero} video={f.heroVideo} priority className="hero-depth absolute inset-0" />
-        <div className="sos-hero-wash absolute inset-0" />
+        <Media photo={f.hero} video={f.heroVideo} priority className="absolute inset-0" />
+        <div className="absolute inset-0 bg-sos-deep/55" />
         <Credit photo={f.hero} className="absolute right-2 top-2" />
         <div className="relative p-5 md:p-10">
           <Sticker className="sos-gradient-badge">28 Dec 2026</Sticker>

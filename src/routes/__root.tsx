@@ -15,7 +15,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { ScrollMotion } from "@/components/site/ScrollMotion";
 
 function NotFoundComponent() {
   return (
@@ -97,7 +96,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {!isGateway && <Header />}
-      {!isGateway && <ScrollMotion path={path} />}
       <main id="main" data-brand={path.startsWith("/festivals/sound-of-summer") ? "sos" : path.startsWith("/festivals/campout") ? "camp" : path.includes("bar-management") ? "barb" : path.includes("ticketing-cashless") ? "howler" : path.includes("fast-track") ? "ft" : "nr"} className={isGateway ? "" : "page-in"}>
         <Outlet />
       </main>
