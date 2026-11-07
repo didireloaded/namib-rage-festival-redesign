@@ -17,9 +17,9 @@ const generalLinks: Nav[] = [
 
 function navigation(path: string): Context {
   if (path.startsWith("/festivals/sound-of-summer")) return {
-    title: "Sound of Summer", accent: "text-sos",
+    title: "Sound of Summer", accent: "text-sos-cyan",
     links: [{ label: "Lineup", href: "#lineup" }, { label: "Stages", href: "#stages" }, { label: "Past summers", href: "#gallery" }, { label: "Getting there", href: "#getting-there" }, { label: "FAQ", href: "#faq" }],
-    action: { label: "Get tickets", href: festivals[0].ticketUrl }, actionClass: "bg-sos text-ink",
+    action: { label: "Get tickets", href: festivals[0].ticketUrl }, actionClass: "bg-sos-orange text-sos-deep",
   };
   if (path.startsWith("/festivals/campout")) return {
     title: "Campout Dune Fest", accent: "text-camp",
@@ -72,7 +72,7 @@ export function Header() {
   const external = current.action.href.startsWith("https://");
 
   return (
-    <header className="sticky top-0 z-50 bg-ink text-cream">
+    <header className={cn("sticky top-0 z-50 text-cream", path.startsWith("/festivals/sound-of-summer") ? "bg-sos-deep" : "bg-ink")}>
       <div className="mx-auto flex h-16 max-w-[1700px] items-center justify-between gap-3 px-4 md:px-10">
         <Link to="/" className="display shrink-0 text-xl md:text-2xl" aria-label="All Namib Rage brands">Namib<span className="text-nr">Rage</span></Link>
         <span className={cn("display min-w-0 truncate text-base sm:text-xl lg:text-2xl", current.accent)}>{current.title}</span>
@@ -106,7 +106,7 @@ export function Header() {
       </div>
 
       {open && (
-        <nav id="experience-nav" aria-label="Mobile experience navigation" className="nav-panel-enter fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-ink px-5 pb-14 pt-6 xl:hidden">
+        <nav id="experience-nav" aria-label="Mobile experience navigation" className={cn("nav-panel-enter fixed inset-x-0 bottom-0 top-16 overflow-y-auto px-5 pb-14 pt-6 xl:hidden", path.startsWith("/festivals/sound-of-summer") ? "bg-sos-deep" : "bg-ink")}>
           <p className="mb-3 text-sm text-cream/60">Explore {current.title}</p>
           {current.links.map((n) => (
             <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="display block border-b border-cream/20 py-3 text-3xl text-cream">{n.label}</a>

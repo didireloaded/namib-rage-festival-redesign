@@ -24,9 +24,9 @@ function Festivals() {
           return (
             <article key={f.slug} className={cn("relative flex min-h-[78svh] flex-col justify-end overflow-hidden", sos ? "bg-sos" : "bg-camp-ink")}>
               <Media photo={f.hero} priority={i === 0} sizes="(min-width:768px) 50vw, 100vw" className="absolute inset-0" />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+              <div className={cn("absolute inset-0", sos ? "sos-hero-wash" : "bg-gradient-to-t from-ink via-ink/30 to-transparent")} />
               <div className="relative p-6 md:p-10">
-                <Sticker className={sos ? "bg-sos text-ink" : "bg-camp text-camp-ink"}>{f.dateSticker}</Sticker>
+                <Sticker className={sos ? "sos-gradient-badge" : "bg-camp text-camp-ink"}>{f.dateSticker}</Sticker>
                 <h2 className="display mt-4 text-6xl md:text-8xl">{f.name}</h2>
                 <p className="mt-2 text-cream/85">{f.venue}, {f.area} · {f.age}</p>
                 <div className="mt-5 flex flex-wrap gap-3">

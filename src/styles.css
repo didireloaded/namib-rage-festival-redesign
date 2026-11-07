@@ -36,6 +36,9 @@
   --color-sos: var(--sos);
   --color-sos-coral: var(--sos-coral);
   --color-sos-cyan: var(--sos-cyan);
+  --color-sos-orange: var(--sos-orange);
+  --color-sos-sky: var(--sos-sky);
+  --color-sos-deep: var(--sos-deep);
   --color-camp: var(--camp);
   --color-camp-ink: var(--camp-ink);
   --color-barb: var(--barb);
@@ -68,9 +71,14 @@
   --cream: oklch(0.95 0.03 85);
   --ink: oklch(0.12 0.008 260);
   --nr: oklch(0.62 0.22 255);
-  --sos: #f47f61;
-  --sos-coral: #f2a0ae;
-  --sos-cyan: #ffc17d;
+  /* Sound of Summer 2026 — sampled/visually matched to the user-supplied campaign poster.
+     These are website tokens, not a claim to be official supplied brand hex codes. */
+  --sos: #102bb7;
+  --sos-deep: #041c68;
+  --sos-sky: #0763af;
+  --sos-cyan: #63d4f2;
+  --sos-coral: #f7579b;
+  --sos-orange: #f6b34d;
   --camp: #fbd327;
   --camp-ink: oklch(0.13 0.01 260);
   --barb: oklch(0.36 0.12 25);
@@ -159,7 +167,7 @@
 
 
 /* Individual brand atmosphere: provisional until campaign assets are approved. */
-#main[data-brand="sos"] { --background:#24161e; --foreground:#fff7ef; --muted-foreground:#e6c8c5; }
+#main[data-brand="sos"] { --background:#07349b; --foreground:#fffaf8; --muted-foreground:#d8e9f8; }
 #main[data-brand="camp"] { --background:#131414; --foreground:#fffbed; --muted-foreground:#dbd4ba; }
 #main[data-brand="barb"] { --background:#241518; --foreground:#fff7f2; --muted-foreground:#dcc1b9; }
 #main[data-brand="howler"] { --background:#201719; --foreground:#fff7ee; --muted-foreground:#ddc5bf; }
@@ -200,4 +208,54 @@
 }
 @media (prefers-reduced-motion:reduce) {
   .scroll-progress {display:none;}
+}
+
+
+/* Sound of Summer 2026: blue-led, beach-sky and orange/pink campaign accents. */
+.sos-hero-wash {
+  background: linear-gradient(
+    0deg,
+    rgba(4, 28, 104, .98) 0%,
+    rgba(7, 52, 155, .78) 37%,
+    rgba(7, 99, 175, .38) 72%,
+    rgba(99, 212, 242, .13) 100%
+  );
+}
+.sos-gradient-badge {
+  background: linear-gradient(110deg, var(--sos-orange), var(--sos-coral));
+  color: var(--sos-deep);
+}
+.sos-outline-title {
+  color: #fffaf8;
+  text-shadow:
+    2px 2px 0 var(--sos-coral),
+    -2px -2px 0 var(--sos-orange),
+    0 4px 18px rgba(4, 28, 104, .32);
+}
+.sos-editorial-section {
+  background: linear-gradient(145deg, #07349b 0%, #041c68 100%);
+  color: #fffaf8;
+}
+.sos-facts {
+  background: var(--sos);
+  color: #fffaf8;
+}
+.sos-facts dl {
+  background: rgba(255, 250, 248, .28);
+}
+.sos-facts dl > div {
+  background: var(--sos);
+}
+.sos-facts dt {
+  color: #c9eefd;
+}
+.sos-gallery-section {
+  background: var(--sos-sky);
+  color: #fffaf8;
+}
+.sos-gallery-section .gallery-thumb:focus-visible {
+  outline-color: var(--sos-orange);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sos-outline-title { transition: none; }
 }

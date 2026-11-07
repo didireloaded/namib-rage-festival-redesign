@@ -27,7 +27,7 @@ function Home() {
         <Link to="/festivals/sound-of-summer" className="group relative overflow-hidden" aria-label="Sound of Summer 2026">
           <Media photo={sos.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="transition-transform duration-700 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
-          <Sticker className="absolute right-4 top-4 bg-sos text-ink">{sos.dateSticker}</Sticker>
+          <Sticker className="sos-gradient-badge absolute right-4 top-4">{sos.dateSticker}</Sticker>
         </Link>
         <Link to="/festivals/campout" className="group relative overflow-hidden bg-camp-ink" aria-label="Campout Dune Fest 2026">
           <Media photo={camp.hero} priority sizes="(min-width:768px) 50vw, 100vw" className="transition-transform duration-700 group-hover:scale-105" />
@@ -143,20 +143,20 @@ function Home() {
 function FestivalBlock({ f, flip, extra }: { f: (typeof festivals)[number]; flip: boolean; extra: typeof photos.sosBeach | null }) {
   const isSos = f.brand === "sos";
   return (
-    <section data-reveal className={cn("grid md:grid-cols-12", isSos ? "bg-sos text-ink" : "bg-camp-ink text-cream")}>
+    <section data-reveal className={cn("grid md:grid-cols-12", isSos ? "bg-sos text-cream" : "bg-camp-ink text-cream")}>
       <div className={cn("relative aspect-[4/5] overflow-hidden md:col-span-7 md:aspect-auto md:min-h-[80vh]", flip && "md:order-2")}>
         <Media photo={f.hero} sizes="(min-width:768px) 58vw, 100vw" fit={isSos ? "cover" : "cover"} />
         <Credit photo={f.hero} className="absolute bottom-2 left-2" />
       </div>
       <div className="flex flex-col justify-center gap-5 p-6 md:col-span-5 md:p-12">
-        <Sticker className={cn("self-start", isSos ? "bg-sos-cyan text-ink" : "bg-camp text-camp-ink")}>{f.dateSticker} 2026</Sticker>
+        <Sticker className={cn("self-start", isSos ? "sos-gradient-badge" : "bg-camp text-camp-ink")}>{f.dateSticker} 2026</Sticker>
         <h2 className="display text-6xl md:text-8xl">{f.name}</h2>
         <p className="text-lg">{f.tagline} {f.venue}, {f.area}. {f.age}.</p>
         {extra && (
           <div className="hidden aspect-video overflow-hidden md:block"><Media photo={extra} sizes="40vw" /></div>
         )}
         <div className="flex flex-wrap gap-3">
-          <TicketLink f={f} className={isSos ? "bg-ink text-sos" : ""}>Get tickets</TicketLink>
+          <TicketLink f={f} className={isSos ? "bg-sos-orange text-sos-deep" : ""}>Get tickets</TicketLink>
           <Link to={isSos ? "/festivals/sound-of-summer" : "/festivals/campout"} className="display self-center text-lg underline underline-offset-4">Festival info →</Link>
         </div>
       </div>
