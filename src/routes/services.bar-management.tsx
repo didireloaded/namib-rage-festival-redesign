@@ -32,16 +32,15 @@ function Barb() {
           <a href="#enquire" className="display mt-6 inline-block bg-barb-orange px-5 py-3 text-xl text-ink">Enquire →</a>
         </div>
       </section>
-      <section className="mx-auto grid max-w-7xl gap-px bg-border md:grid-cols-4">
-        {pillars.map(([t, d], i) => (
-          <div key={t} className="bg-background p-6 md:p-8">
-            <span className="display text-5xl text-barb-orange">0{i + 1}</span>
-            <h2 className="display mt-4 text-3xl">{t}</h2>
-            <p className="mt-2 text-muted-foreground">{d}</p>
+      <section id="services" className="mx-auto grid max-w-7xl scroll-mt-24 gap-x-12 gap-y-8 px-5 py-16 md:grid-cols-2 md:px-10">
+        {pillars.map(([t, d]) => (
+          <div key={t} className="border-t border-barb-orange/60 pt-5">
+            <h2 className="display text-3xl md:text-5xl">{t}</h2>
+            <p className="mt-3 max-w-md text-lg text-muted-foreground">{d}</p>
           </div>
         ))}
       </section>
-      <section className="bg-barb-orange py-16 text-ink">
+      <section id="events" className="scroll-mt-24 bg-barb-orange py-16 text-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <p className="eyebrow">Events powered · bars operated by Barbarian</p>
           <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">

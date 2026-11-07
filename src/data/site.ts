@@ -32,7 +32,7 @@ export type Brand = {
 };
 
 export const brands: Brand[] = [
-  { key: "nr", name: "Namib Rage", short: "NR", role: "Master brand", to: "/about", logo: null, accentClass: "bg-nr", textOnAccent: "text-cream" },
+  { key: "nr", name: "Namib Rage", short: "NR", role: "Master brand", to: "/namib-rage", logo: null, accentClass: "bg-nr", textOnAccent: "text-cream" },
   { key: "sos", name: "Sound of Summer", short: "SoS", role: "Owned festival", to: "/festivals/sound-of-summer", logo: null, accentClass: "bg-sos", textOnAccent: "text-ink" },
   { key: "camp", name: "Campout Dune Fest", short: "Campout", role: "Owned festival", to: "/festivals/campout", logo: null, accentClass: "bg-camp", textOnAccent: "text-camp-ink" },
   { key: "barb", name: "Barbarian", short: "Bar Mgmt", role: "Service division", to: "/services/bar-management", logo: null, accentClass: "bg-barb", textOnAccent: "text-cream" },

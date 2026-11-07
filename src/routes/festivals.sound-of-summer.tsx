@@ -32,7 +32,7 @@ function Sos() {
       <FactRow items={[["Date", "28 Dec 2026"], ["Time", f.times], ["Where", "Langstrand"], ["Age", "18+ only"]]} />
 
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
-        <div>
+        <div id="lineup" className="scroll-mt-24">
           <p className="eyebrow text-sos">Lineup</p>
           {sosLineup.map((a) => (
             <div key={a.name}>
@@ -42,21 +42,20 @@ function Sos() {
           ))}
           <p className="mt-6 text-sm text-muted-foreground">More artists announced once approved.</p>
         </div>
-        <div>
-          <p className="eyebrow text-sos-cyan">Three stages</p>
-          <ol className="mt-3">
-            {sosStages.map((s, i) => (
-              <li key={s.name} className="flex items-baseline gap-4 border-b border-border py-4">
-                <span className="display text-2xl text-sos">0{i + 1}</span>
-                <span className="display text-5xl md:text-6xl">{s.name}</span>
-                <span className="eyebrow ml-auto text-muted-foreground">{s.note}</span>
+        <div id="stages" className="scroll-mt-24">
+          <h2 className="display text-5xl text-sos-cyan md:text-7xl">The stages</h2>
+          <ul className="mt-7 space-y-5">
+            {sosStages.map((s) => (
+              <li key={s.name} className="group border-b border-cream/25 pb-5">
+                <p className="display text-[clamp(2.8rem,6vw,5.5rem)] leading-none transition-colors group-hover:text-sos">{s.name}</p>
+                <p className="mt-2 text-base text-cream/75">{s.note === "Stage two" || s.note === "Stage three" ? "Festival stage" : s.note}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
-      <section className="bg-sos py-16 text-ink">
+      <section id="gallery" className="scroll-mt-24 bg-sos py-16 text-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="display mb-8 text-5xl md:text-7xl">From past summers</h2>
           <Gallery items={[photos.sosStage, photos.sosBeach, photos.sosCrowd, photos.nrGallery2, photos.nrGallery4]} />
@@ -65,11 +64,11 @@ function Sos() {
 
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
         <div>
-          <h2 className="display text-5xl md:text-7xl">Getting there</h2>
+          <h2 id="getting-there" className="display scroll-mt-24 text-5xl md:text-7xl">Getting there</h2>
           <p className="mt-4 text-lg text-muted-foreground">Tidal Pools & Jetty Beach sit at Langstrand, between Walvis Bay and Swakopmund on the B2. Plan a designated driver or shared transport home.</p>
         </div>
         <div>
-          <h2 className="display mb-4 text-5xl md:text-7xl">FAQ & rules</h2>
+          <h2 id="faq" className="display mb-4 scroll-mt-24 text-5xl md:text-7xl">FAQ & rules</h2>
           <Faq items={[
             { q: "Is it 18+?", a: "Yes. Valid ID is required at the gate." },
             { q: "What time does it run?", a: "12:00 to 23:00 on 28 December 2026 (approved operating hours)." },

@@ -31,18 +31,17 @@ function Campout() {
       <FactRow items={[["Dates", "31 Dec – 1 Jan"], ["Gates", "From 12:00"], ["Where", "Seukelduine"], ["Age", "18+ only"]]} />
       <p className="mx-auto max-w-7xl px-5 pt-4 text-sm text-muted-foreground md:px-10">Closing and music times are pending approval.</p>
 
-      <section className="bg-camp py-20 text-camp-ink">
+      <section id="camping" className="scroll-mt-24 bg-camp py-20 text-camp-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="display text-5xl md:text-8xl">Camp like you care</h2>
-          <ol className="mt-10 grid gap-8 md:grid-cols-3">
-            {[["Leave no trace", "Pack out everything you bring in."], ["Protect the park", "Dorob is a national park, stay on marked routes and areas."], ["Bring the basics", "Tent, water, sun protection and warm layers for the night."]].map(([t, d], i) => (
+          <ul className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-3">
+            {[["Leave no trace", "Pack out everything you bring in."], ["Protect the park", "Dorob is a national park, stay on marked routes and areas."], ["Bring the basics", "Tent, water, sun protection and warm layers for the night."]].map(([t, d]) => (
               <li key={t}>
-                <span className="display text-6xl">0{i + 1}</span>
-                <p className="display mt-2 text-3xl">{t}</p>
-                <p className="mt-2">{d}</p>
+                <h3 className="display text-3xl md:text-5xl">{t}</h3>
+                <p className="mt-3 max-w-sm text-base leading-relaxed">{d}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
@@ -52,15 +51,15 @@ function Campout() {
 
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-2 md:px-10">
         <div>
-          <h2 className="display text-5xl md:text-7xl">How to get there</h2>
+          <h2 id="getting-there" className="display scroll-mt-24 text-5xl md:text-7xl">How to get there</h2>
           <p className="mt-4 text-lg text-muted-foreground">Seukelduine lies in Dorob National Park on the coast near Swakopmund. Exact access route and parking details will be shared with ticket holders.</p>
         </div>
-        <Faq items={[
+        <div id="faq" className="scroll-mt-24"><h2 className="display mb-6 text-5xl md:text-7xl">FAQ</h2><Faq items={[
           { q: "Is camping included?", a: "Campout is a camping festival — check your Howler ticket type for details." },
           { q: "When do gates open?", a: "From 12:00 on 31 December 2026." },
           { q: "Age limit?", a: "18+ with valid ID." },
           { q: "Ticket help?", a: <a className="underline" href={company.howlerHelp} target="_blank" rel="noopener noreferrer">Visit Howler Help ↗</a> },
-        ]} />
+        ]} /></div>
       </section>
       <MobileTicketBar f={f} />
     </>

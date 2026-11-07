@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
   type ErrorComponentProps,
+  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -90,13 +91,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const path = useRouterState({ select: (state) => state.location.pathname });
+  const isGateway = path === "/";
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
-      <main id="main" className="page-in">
+      {!isGateway && <Header />}
+      <main id="main" className={isGateway ? "" : "page-in"}>
         <Outlet />
       </main>
-      <Footer />
+      {!isGateway && <Footer />}
     </QueryClientProvider>
   );
 }

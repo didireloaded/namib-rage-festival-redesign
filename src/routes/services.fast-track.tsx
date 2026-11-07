@@ -21,23 +21,22 @@ function FT() {
           <p className="max-w-lg text-lg">Professional permits, licences and travel coordination for events and visiting performers.</p>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-5 py-16 md:px-10">
-        <ol className="grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-          {fastTrackServices.map((s, i) => (
-            <li key={s} className="group border-b border-r border-border p-6 transition-colors hover:bg-ft">
-              <span className="display text-6xl text-ft group-hover:text-cream">{String(i + 1).padStart(2, "0")}</span>
-              <p className="display mt-6 text-3xl">{s}</p>
+      <section id="services" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-16 md:px-10">
+        <h2 className="display mb-8 text-4xl md:text-6xl">What we handle</h2>
+        <ul className="grid gap-x-12 sm:grid-cols-2">
+          {fastTrackServices.map((s) => (
+            <li key={s} className="border-b border-cream/25 py-6">
+              <p className="display text-[clamp(1.8rem,3.5vw,3.25rem)] leading-tight transition-colors hover:text-sos-cyan">{s}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </section>
-      <section className="bg-cream py-16 text-ink">
+      <section id="process" className="scroll-mt-24 bg-cream py-16 text-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="display text-5xl md:text-7xl">How it works</h2>
           <ol className="mt-10 grid gap-6 md:grid-cols-3">
-            {steps.map((s, i) => (
+            {steps.map((s) => (
               <li key={s} className="border-t-4 border-ft pt-4">
-                <span className="eyebrow text-ft">Step {i + 1}</span>
                 <p className="display mt-2 text-3xl md:text-4xl">{s}</p>
               </li>
             ))}

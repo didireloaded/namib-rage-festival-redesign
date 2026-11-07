@@ -25,17 +25,16 @@ function Howler() {
           <p className="max-w-md text-lg">Howler runs ticketing and cashless for Namib Rage festivals and organisers.</p>
         </div>
       </section>
-      <section className="grid md:grid-cols-3">
-        {pillars.map(([t, d], i) => (
+      <section id="services" className="grid scroll-mt-24 md:grid-cols-3">
+        {pillars.map(([t, d]) => (
           <div key={t} className="border-b border-border p-6 md:border-r md:p-10">
-            <span className="display text-8xl text-howler">{i + 1}</span>
             <h2 className="display mt-4 text-4xl md:text-5xl">{t}</h2>
             <p className="mt-2 text-muted-foreground">{d}</p>
           </div>
         ))}
       </section>
       <section className="grid md:grid-cols-2">
-        <div className="bg-cream p-6 text-ink md:p-12">
+        <div id="ticket-help" className="scroll-mt-24 bg-cream p-6 text-ink md:p-12">
           <p className="eyebrow">Attending an event?</p>
           <h2 className="display mt-3 text-5xl md:text-6xl">Ticket help</h2>
           <p className="mt-3">Lost tickets, refunds and cashless top-ups are handled by Howler support.</p>
