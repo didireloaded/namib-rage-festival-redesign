@@ -191,3 +191,13 @@
 .hero-title-in { animation:hero-title-in 350ms cubic-bezier(.16,1,.3,1) both; }
 @keyframes hero-title-in { from { opacity:.65;transform:translate3d(0,12px,0); } to {opacity:1;transform:translate3d(0,0,0);} }
 @media (prefers-reduced-motion:reduce) { .hero-title-in {animation:none;} }
+
+
+/* Apply local page tokens to the actual canvas, not just nested components. */
+#main[data-brand] {
+  color:var(--foreground);
+  background-color:var(--background);
+}
+@media (prefers-reduced-motion:reduce) {
+  .scroll-progress {display:none;}
+}
