@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+
+## Website Design Craft
+
+For all website design, development, animation, redesign, and QA work, read `.agents/skills/website-design-craft/SKILL.md` and the relevant files under `references/`. Apply the full anti-slop and motion review, use genuine approved event media, preserve the approved six-brand colour system, verify mobile, keyboard, and reduced-motion states, and do not invent logos, sponsors, event details, or form submission success. Preserve existing working functionality unless a change is explicitly requested.
