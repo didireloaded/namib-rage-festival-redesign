@@ -4,6 +4,7 @@ import { Credit, Media } from "@/components/site/Media";
 import { Chip, Wordmark } from "@/components/site/Bits";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { seo } from "@/lib/seo";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/services/bar-management")({
   head: () => seo("Barbarian Bar Management", "Full-service event bars: bar build and planning, trained teams, service operations, stock and point of sale."),
@@ -29,7 +30,7 @@ function Barb() {
           <p className="eyebrow text-barb-orange">Service division · Bar management</p>
           <Wordmark k="barb" className="mt-3 block text-[18vw] md:text-[11rem]" />
           <p className="mt-3 max-w-md text-lg">Full-service event bars, planned, staffed and run end to end.</p>
-          <a href="#enquire" className="display mt-6 inline-block bg-barb-orange px-5 py-3 text-xl text-ink">Enquire →</a>
+          <a href="#enquire" className="display mt-6 inline-block bg-barb-orange px-5 py-3 text-xl text-ink">Enquire <ArrowRight className="inline-block size-5" aria-hidden="true" /></a>
         </div>
       </section>
       <section data-reveal id="services" className="mx-auto grid max-w-7xl scroll-mt-24 gap-x-12 gap-y-8 px-5 py-16 md:grid-cols-2 md:px-10">

@@ -5,6 +5,7 @@ import { Sticker, TicketLink } from "@/components/site/Bits";
 import { Gallery } from "@/components/site/Gallery";
 import { seo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/festivals/")({
   head: () => seo("Festivals 2026", "Sound of Summer on 28 Dec and Campout Dune Fest on 31 Dec 2026 — the two festivals Namib Rage owns."),
@@ -31,7 +32,7 @@ function Festivals() {
                 <p className="mt-2 text-cream/85">{f.venue}, {f.area} · {f.age}</p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <TicketLink f={f}>Tickets</TicketLink>
-                  <Link to={sos ? "/festivals/sound-of-summer" : "/festivals/campout"} className="display self-center text-lg underline underline-offset-4">Details →</Link>
+                  <Link to={sos ? "/festivals/sound-of-summer" : "/festivals/campout"} className="display self-center text-lg underline underline-offset-4">Details <ArrowRight className="inline-block size-5" aria-hidden="true" /></Link>
                 </div>
               </div>
             </article>
@@ -40,7 +41,7 @@ function Festivals() {
       </div>
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-10">
         <h2 className="display text-5xl md:text-7xl">Past editions</h2>
-        <p className="mt-3 mb-8 text-muted-foreground">Sound of Summer and Namib Rage official gallery moments.</p>
+        <p className="mt-3 mb-8 text-muted-foreground">Moments from our events.</p>
         <Gallery items={[photos.sosCrowd, photos.sosStage, photos.sosBeach, photos.nrGallery1, photos.nrGallery2, photos.nrGallery3, photos.nrGallery4]} />
       </section>
     </>

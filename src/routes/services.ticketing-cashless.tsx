@@ -3,6 +3,7 @@ import { company } from "@/data/site";
 import { Wordmark } from "@/components/site/Bits";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { seo } from "@/lib/seo";
+import { ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/services/ticketing-cashless")({
   head: () => seo("Howler ticketing & cashless", "Online ticket sales, access control and cashless payments for organisers, with Howler."),
@@ -38,7 +39,7 @@ function Howler() {
           <p className="eyebrow">Attending an event?</p>
           <h2 className="display mt-3 text-5xl md:text-6xl">Ticket help</h2>
           <p className="mt-3">Lost tickets, refunds and cashless top-ups are handled by Howler support.</p>
-          <a href={company.howlerHelp} target="_blank" rel="noopener noreferrer" className="display mt-6 inline-block bg-howler px-5 py-3 text-xl text-cream">Howler Help ↗</a>
+          <a href={company.howlerHelp} target="_blank" rel="noopener noreferrer" className="display mt-6 inline-block bg-howler px-5 py-3 text-xl text-cream">Howler Help <ExternalLink className="inline-block size-5" aria-hidden="true" /></a>
         </div>
         <div id="enquire" className="p-6 md:p-12">
           <p className="eyebrow">Organisers</p>

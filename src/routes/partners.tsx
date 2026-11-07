@@ -23,10 +23,8 @@ function Partners() {
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 py-16 md:px-10">
-        <h2 className="display text-4xl md:text-6xl">Our partners</h2>
-        {approved.length === 0 ? (
-          <p className="mt-4 border-l-4 border-nr pl-4 text-muted-foreground">Logos appear here once each partner approves their use.</p>
-        ) : (
+        {approved.length > 0 && <h2 className="display text-4xl md:text-6xl">Our partners</h2>}
+        {approved.length > 0 && (
           <ul className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-5">
             {approved.map((s) => <li key={s.name}><img src={s.logo} alt={s.name} loading="lazy" className="h-12 w-auto" /></li>)}
           </ul>

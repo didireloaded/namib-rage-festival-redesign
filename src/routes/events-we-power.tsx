@@ -11,10 +11,11 @@ export const Route = createFileRoute("/events-we-power")({
   component: Power,
 });
 
-const tabs = ["All", "Owned", "Bar operations", "Ticketing"] as const;
+const allTabs = ["All", "Owned", "Bar operations", "Ticketing"] as const;
 
 function Power() {
-  const [tab, setTab] = useState<(typeof tabs)[number]>("All");
+  const [tab, setTab] = useState<(typeof allTabs)[number]>("All");
+  const tabs = allTabs.filter((t) => t !== "Ticketing" || poweredEvents.some((event) => event.roles.includes("Ticketing")));
   const list = poweredEvents.filter((e) => tab === "All" || e.roles.includes(tab));
   return (
     <>
@@ -29,7 +30,7 @@ function Power() {
       </div>
       <section className="mx-auto max-w-7xl px-5 py-10 md:px-10">
         {list.length === 0 ? (
-          <p className="border-l-4 border-howler py-6 pl-4 text-muted-foreground">No ticketing credits are published yet. They appear once confirmed.</p>
+          <p className="border-l-4 border-howler py-6 pl-4 text-muted-foreground">No matching events.</p>
         ) : (
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((e) => {

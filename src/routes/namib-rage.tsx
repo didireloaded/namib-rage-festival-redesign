@@ -3,6 +3,7 @@ import { brands, festivals, photos, poweredEvents, sponsors } from "@/data/site"
 import { Credit, Media } from "@/components/site/Media";
 import { Chip, CtaLink, Sticker, TicketLink, Wordmark } from "@/components/site/Bits";
 import { cn } from "@/lib/utils";
+import { ArrowDown, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/namib-rage")({
   head: () => ({
@@ -42,7 +43,7 @@ function Home() {
             <TicketLink f={sos} className="text-base md:text-xl">SoS 2026</TicketLink>
             <TicketLink f={camp} className="text-base md:text-xl">Campout 2026</TicketLink>
           </div>
-          <a href="#ecosystem" className="pointer-events-auto eyebrow mt-4 hidden text-cream/80 hover:text-cream md:block">Scroll to explore ↓</a>
+          <a href="#ecosystem" className="pointer-events-auto eyebrow mt-4 hidden text-cream/80 hover:text-cream md:block">Scroll to explore <ArrowDown className="ml-2 inline-block size-4" aria-hidden="true" /></a>
         </div>
       </section>
 
@@ -53,7 +54,7 @@ function Home() {
             <Link key={b.key} to={b.to} className={cn("group flex min-h-36 flex-col justify-between p-4 transition-all hover:brightness-110", b.accentClass, b.textOnAccent)}>
               <span className="eyebrow text-[0.6rem] opacity-80">{b.role}</span>
               <Wordmark k={b.key} className="text-2xl md:text-3xl" />
-              <span className="eyebrow text-[0.6rem] opacity-0 transition-opacity group-hover:opacity-100">Explore →</span>
+              <span className="eyebrow text-[0.6rem] opacity-0 transition-opacity group-hover:opacity-100">Explore <ArrowRight className="inline-block size-3" aria-hidden="true" /></span>
             </Link>
           ))}
         </div>
@@ -96,7 +97,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="display text-5xl md:text-8xl">Events we power</h2>
-            <Link to="/events-we-power" className="display text-xl underline-offset-4 hover:underline">See all →</Link>
+            <Link to="/events-we-power" className="display text-xl underline-offset-4 hover:underline">See all <ArrowRight className="inline-block size-5" aria-hidden="true" /></Link>
           </div>
           <ul className="mt-10 grid grid-cols-2 gap-2 md:grid-cols-3">
             {poweredEvents.map((e) => (
@@ -115,9 +116,8 @@ function Home() {
       {/* SPONSORS */}
       <section data-reveal className="mx-auto max-w-7xl px-5 py-16 md:px-10">
         <h2 className="display text-4xl md:text-6xl">Partners & sponsors</h2>
-        {sponsors.filter((s) => s.approved).length === 0 ? (
-          <p className="mt-4 max-w-lg border-l-4 border-nr pl-4 text-muted-foreground">Sponsor logos appear here once approved by each partner.</p>
-        ) : null}
+        <p className="mt-4 max-w-lg text-muted-foreground">Collaborate with us to bring brands and festival audiences together.</p>
+        <Link to="/partners" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">Become a partner <ArrowRight className="size-4" aria-hidden="true" /></Link>
       </section>
 
       {/* CTA */}
@@ -157,7 +157,7 @@ function FestivalBlock({ f, flip, extra }: { f: (typeof festivals)[number]; flip
         )}
         <div className="flex flex-wrap gap-3">
           <TicketLink f={f} className={isSos ? "bg-sos-orange text-sos-deep" : ""}>Get tickets</TicketLink>
-          <Link to={isSos ? "/festivals/sound-of-summer" : "/festivals/campout"} className="display self-center text-lg underline underline-offset-4">Festival info →</Link>
+          <Link to={isSos ? "/festivals/sound-of-summer" : "/festivals/campout"} className="display self-center text-lg underline underline-offset-4">Festival info <ArrowRight className="inline-block size-5" aria-hidden="true" /></Link>
         </div>
       </div>
     </section>

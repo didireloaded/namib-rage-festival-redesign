@@ -47,7 +47,7 @@ function About() {
           <img src={organiserMark.src} alt={organiserMark.alt} loading="lazy" className="size-20 object-cover" />
           <figcaption className="text-sm text-muted-foreground">{organiserMark.note}</figcaption>
         </figure>
-        <p className="mt-8 text-sm text-muted-foreground">Team photos will be added once verified.</p>
+        
       </section>
     </>
   );

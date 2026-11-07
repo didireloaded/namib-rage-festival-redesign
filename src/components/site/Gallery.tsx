@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Photo } from "@/data/site";
 import { Credit, Media } from "./Media";
 import { cn } from "@/lib/utils";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
 
 export function Gallery({ items }: { items: Photo[] }) {
   const [idx, setIdx] = useState<number | null>(null);
@@ -61,9 +62,9 @@ export function Gallery({ items }: { items: Photo[] }) {
           onClick={(event) => { if (event.target === event.currentTarget) close(); }}
         >
           <div className="flex justify-end gap-4">
-            <button type="button" className="display text-xl" onClick={() => setIdx((idx - 1 + items.length) % items.length)}>← Prev</button>
-            <button type="button" className="display text-xl" onClick={() => setIdx((idx + 1) % items.length)}>Next →</button>
-            <button type="button" autoFocus className="display text-xl text-camp" onClick={close}>Close</button>
+            <button type="button" className="display text-xl" onClick={() => setIdx((idx - 1 + items.length) % items.length)}><ArrowLeft className="mr-2 inline-block size-5" aria-hidden="true" />Previous</button>
+            <button type="button" className="display text-xl" onClick={() => setIdx((idx + 1) % items.length)}>Next <ArrowRight className="ml-2 inline-block size-5" aria-hidden="true" /></button>
+            <button type="button" autoFocus className="display text-xl text-camp" onClick={close}><X className="mr-2 inline-block size-5" aria-hidden="true" />Close</button>
           </div>
           <div key={items[idx].id} className="lightbox-media relative min-h-0 flex-1 py-4">
             <Media photo={items[idx]} fit="contain" />

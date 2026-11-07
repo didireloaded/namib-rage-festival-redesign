@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { festivals } from "@/data/site";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Nav = { label: string; href: string };
@@ -99,9 +100,9 @@ export function Header() {
             aria-label={open ? "Close navigation" : "Open navigation"}
             className="min-h-10 px-2 text-sm font-semibold xl:hidden"
           >
-            {open ? "Close" : "Menu"}
+            {open ? <><X className="mr-2 inline-block size-4" aria-hidden="true" />Close</> : <><Menu className="mr-2 inline-block size-4" aria-hidden="true" />Menu</>}
           </button>
-          <Link to="/" className="hidden text-xs font-semibold text-cream/75 hover:text-cream xl:block">All brands ↗</Link>
+          <Link to="/" className="hidden text-xs font-semibold text-cream/75 hover:text-cream xl:block">All brands <ArrowUpRight className="ml-1 inline-block size-4" aria-hidden="true" /></Link>
         </div>
       </div>
 
@@ -112,7 +113,7 @@ export function Header() {
             <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="display block border-b border-cream/20 py-3 text-3xl text-cream">{n.label}</a>
           ))}
           <p className="mb-3 mt-8 text-sm text-cream/60">Switch experience</p>
-          <Link to="/" className="display block py-3 text-3xl text-camp" onClick={() => setOpen(false)}>All brands ↗</Link>
+          <Link to="/" className="display block py-3 text-3xl text-camp" onClick={() => setOpen(false)}>All brands <ArrowUpRight className="ml-1 inline-block size-5" aria-hidden="true" /></Link>
           <Link to="/festivals/sound-of-summer" className="block py-2 text-lg text-sos" onClick={() => setOpen(false)}>Sound of Summer</Link>
           <Link to="/festivals/campout" className="block py-2 text-lg text-camp" onClick={() => setOpen(false)}>Campout Dune Fest</Link>
         </nav>

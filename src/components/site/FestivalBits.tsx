@@ -2,6 +2,7 @@ import { useId, useState, type ReactNode } from "react";
 import type { Festival } from "@/data/site";
 import { TicketLink } from "./Bits";
 import { cn } from "@/lib/utils";
+import { Plus, Minus } from "lucide-react";
 
 export function MobileTicketBar({ f }: { f: Festival }) {
   const isSos = f.brand === "sos";
@@ -35,7 +36,7 @@ export function Faq({ items }: { items: { q: string; a: ReactNode }[] }) {
                 onClick={() => setOpen(expanded ? null : index)}
               >
                 {item.q}
-                <span className={cn("shrink-0 text-3xl transition-transform duration-200", expanded && "rotate-45")} aria-hidden="true">+</span>
+                {expanded ? <Minus className="size-5 shrink-0" strokeWidth={1.8} aria-hidden="true" /> : <Plus className="size-5 shrink-0" strokeWidth={1.8} aria-hidden="true" />}
               </button>
             </dt>
             <dd id={panelId} className={cn("faq-answer grid", expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")} aria-hidden={!expanded} inert={!expanded}>

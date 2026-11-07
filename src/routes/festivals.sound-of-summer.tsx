@@ -5,6 +5,7 @@ import { Sticker, TicketLink } from "@/components/site/Bits";
 import { Gallery } from "@/components/site/Gallery";
 import { FactRow, Faq, MobileTicketBar } from "@/components/site/FestivalBits";
 import { seo } from "@/lib/seo";
+import { ExternalLink } from "lucide-react";
 
 const f = festivals[0];
 
@@ -73,7 +74,7 @@ function Sos() {
             { q: "Is it 18+?", a: "Yes. Valid ID is required at the gate." },
             { q: "What time does it run?", a: "12:00 to 23:00 on 28 December 2026 (approved operating hours)." },
             { q: "Where do I buy tickets?", a: "Only through the official Howler event page linked on this site." },
-            { q: "Ticket problems?", a: <a className="underline" href={company.howlerHelp} target="_blank" rel="noopener noreferrer">Visit Howler Help ↗</a> },
+            { q: "Ticket problems?", a: <a className="underline" href={company.howlerHelp} target="_blank" rel="noopener noreferrer">Visit Howler Help <ExternalLink className="inline-block size-4" aria-hidden="true" /></a> },
           ]} />
         </div>
       </section>

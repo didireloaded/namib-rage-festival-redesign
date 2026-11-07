@@ -5,6 +5,7 @@ import { Sticker, TicketLink } from "@/components/site/Bits";
 import { Gallery } from "@/components/site/Gallery";
 import { FactRow, Faq, MobileTicketBar } from "@/components/site/FestivalBits";
 import { seo } from "@/lib/seo";
+import { ExternalLink } from "lucide-react";
 
 const f = festivals[1];
 
@@ -58,7 +59,7 @@ function Campout() {
           { q: "Is camping included?", a: "Campout is a camping festival — check your Howler ticket type for details." },
           { q: "When do gates open?", a: "From 12:00 on 31 December 2026." },
           { q: "Age limit?", a: "18+ with valid ID." },
-          { q: "Ticket help?", a: <a className="underline" href={company.howlerHelp} target="_blank" rel="noopener noreferrer">Visit Howler Help ↗</a> },
+          { q: "Ticket help?", a: <a className="underline" href={company.howlerHelp} target="_blank" rel="noopener noreferrer">Visit Howler Help <ExternalLink className="inline-block size-4" aria-hidden="true" /></a> },
         ]} /></div>
       </section>
       <MobileTicketBar f={f} />

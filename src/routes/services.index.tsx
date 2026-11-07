@@ -3,6 +3,7 @@ import { brand, type BrandKey } from "@/data/site";
 import { Wordmark } from "@/components/site/Bits";
 import { seo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/services/")({
   head: () => seo("Event services", "Barbarian bar management, Howler ticketing & cashless, and Fast Track permits and bookings."),
@@ -29,7 +30,7 @@ function Services() {
             <div className="flex items-baseline">
               <Wordmark k={k} className="text-[clamp(3.3rem,7vw,7rem)] leading-none transition-transform group-hover:translate-x-2" />
             </div>
-            <p className="display text-2xl md:text-3xl">{line} →</p>
+            <p className="display text-2xl md:text-3xl">{line} <ArrowRight className="inline-block size-6" aria-hidden="true" /></p>
           </Link>
         );
       })}

@@ -3,6 +3,7 @@ import { brand, photos, workLinks } from "@/data/site";
 import { Media } from "@/components/site/Media";
 import { seo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/work-with-us")({
   head: () => seo("Work with us", "Apply for Barbarian bar crew, Howler ticketing crew, or as a festival vendor."),
@@ -24,12 +25,12 @@ function Work() {
             <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
               className={cn("group flex min-h-64 flex-col justify-between p-6 md:p-10", b.accentClass, b.textOnAccent)}>
               <span className="eyebrow">{b.name}</span>
-              <span className="display text-4xl md:text-5xl">{l.label} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">↗</span></span>
+              <span className="display text-4xl md:text-5xl">{l.label} <ArrowUpRight className="ml-2 inline-block size-8 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span>
             </a>
           );
         })}
       </section>
-      <p className="mx-auto max-w-7xl px-5 py-8 text-sm text-muted-foreground md:px-10">Applications open on the official Namib Rage site. This preview never collects ID or banking details.</p>
+      <p className="mx-auto max-w-7xl px-5 py-8 text-sm text-muted-foreground md:px-10">Applications are submitted through the Namib Rage application portal.</p>
     </>
   );
 }
