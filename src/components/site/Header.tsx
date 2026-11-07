@@ -19,7 +19,14 @@ const generalLinks: Nav[] = [
 function navigation(path: string): Context {
   if (path.startsWith("/festivals/sound-of-summer")) return {
     title: "Sound of Summer", accent: "text-sos-cyan",
-    links: [{ label: "Lineup", href: "#lineup" }, { label: "Stages", href: "#stages" }, { label: "Past summers", href: "#gallery" }, { label: "Getting there", href: "#getting-there" }, { label: "FAQ", href: "#faq" }],
+    links: [
+      { label: "Festival", href: "/festivals/sound-of-summer" },
+      { label: "Lineup", href: "/festivals/sound-of-summer#lineup" },
+      { label: "Stages", href: "/festivals/sound-of-summer/stages" },
+      { label: "Past summers", href: "/festivals/sound-of-summer#gallery" },
+      { label: "Getting there", href: "/festivals/sound-of-summer#getting-there" },
+      { label: "FAQ", href: "/festivals/sound-of-summer#faq" }
+    ],
     action: { label: "Get tickets", href: festivals[0].ticketUrl }, actionClass: "bg-sos-orange text-sos-deep",
   };
   if (path.startsWith("/festivals/campout")) return {

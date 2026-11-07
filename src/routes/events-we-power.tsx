@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { poweredEvents } from "@/data/site";
 import { Gallery } from "@/components/site/Gallery";
@@ -53,7 +54,7 @@ function EventsWePower() {
             <ul className="grid gap-x-12 md:grid-cols-2">
               {withoutPhotos.map(event=>(
                 <li key={event.name} className="flex flex-wrap items-baseline justify-between gap-2 border-t border-bone/30 py-5">
-                  <span className="display text-3xl md:text-5xl">{event.name}</span>
+                  {event.to ? <a href={event.to} className="display inline-flex items-center gap-3 text-3xl underline-offset-4 hover:underline md:text-5xl">{event.name} <ArrowUpRight className="size-5" aria-hidden="true" /></a> : <span className="display text-3xl md:text-5xl">{event.name}</span>}
                   <span className="text-xs font-semibold uppercase tracking-wide text-bone/60">{event.roles.includes("Bar operations")?"Barbarian bars":"Event service"}</span>
                 </li>
               ))}

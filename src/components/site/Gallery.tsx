@@ -44,14 +44,14 @@ export function Gallery({ items, captions }: { items: Photo[]; captions?: Galler
 
   return (
     <>
-      <div className={cn("grid grid-cols-2 gap-2 md:grid-cols-4",captions && "gallery-editorial")}>
+      <div className={cn("grid gap-3",captions ? "gallery-editorial grid-cols-2 md:grid-cols-4" : "mx-auto max-w-6xl grid-cols-2 sm:grid-cols-3")}>
         {items.map((photo, index) => (
           <button
             key={photo.id}
             ref={(element) => { triggers.current[index] = element; }}
             type="button"
             onClick={() => { lastTrigger.current = index; setIdx(index); }}
-            className={cn("gallery-thumb group relative overflow-hidden bg-night text-bone", index % 5 === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/5]")}
+            className={cn("gallery-thumb group relative overflow-hidden bg-night text-bone",captions ? (index % 5 === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/5]") : "aspect-square")}
             aria-label={"View photo: " + (captions?.[index]?.title ?? photo.alt)}
           >
             <Media photo={photo} sizes="(min-width:768px) 25vw, 50vw" />

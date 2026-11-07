@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { festivals, photos } from "@/data/site";
+import { festivals } from "@/data/site";
 import { Media } from "@/components/site/Media";
 import { Sticker, TicketLink } from "@/components/site/Bits";
-import { Gallery } from "@/components/site/Gallery";
 import { seo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
@@ -27,7 +26,7 @@ function Festivals() {
               <Media photo={f.hero} priority={i === 0} sizes="(min-width:768px) 50vw, 100vw" className="absolute inset-0" />
               <div className={cn("absolute inset-0", sos ? "sos-hero-wash" : "bg-night/55")} />
               <div className="relative p-6 md:p-10">
-                <Sticker className={sos ? "sos-gradient-badge" : "bg-camp text-camp-ink"}>{f.dateSticker}</Sticker>
+                <span className={sos ? "text-sm font-bold uppercase tracking-widest text-sos-cyan" : "text-sm font-bold uppercase tracking-widest text-camp"}>{f.dateLong}</span>
                 <h2 className="display mt-4 text-6xl md:text-8xl">{f.name}</h2>
                 <p className="mt-2 text-cream/85">{f.venue}, {f.area} · {f.age}</p>
                 <div className="mt-5 flex flex-wrap gap-3">
@@ -39,11 +38,6 @@ function Festivals() {
           );
         })}
       </div>
-      <section className="mx-auto max-w-7xl px-5 py-20 md:px-10">
-        <h2 className="display text-5xl md:text-7xl">Past editions</h2>
-        <p className="mt-3 mb-8 text-muted-foreground">Moments from our events.</p>
-        <Gallery items={[photos.sosCrowd, photos.sosStage, photos.sosBeach]} />
-      </section>
     </>
   );
 }

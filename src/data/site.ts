@@ -163,3 +163,10 @@ export const fastTrackServices = [
 
 /** Approved operational photos for Howler’s three steps. None supplied yet. */
 export const howlerFlowMedia: (Photo | null)[] = [null, null, null];
+
+/** Stage-specific photo collections must be curated and verified before publishing. */
+export const sosStageMedia: Record<"savanna" | "coke-studio" | "jetty", Photo[]> = {
+  savanna: [],
+  "coke-studio": [],
+  jetty: [],
+};

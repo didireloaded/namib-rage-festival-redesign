@@ -1,11 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { company, festivals, photos, sosLineup, sosStages } from "@/data/site";
 import { Credit, Media } from "@/components/site/Media";
 import { Sticker, TicketLink } from "@/components/site/Bits";
 import { Gallery } from "@/components/site/Gallery";
 import { FactRow, Faq, MobileTicketBar } from "@/components/site/FestivalBits";
 import { seo } from "@/lib/seo";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, MapPin } from "lucide-react";
 
 const f = festivals[0];
 
@@ -45,14 +45,21 @@ function Sos() {
         </div>
         <div id="stages" className="scroll-mt-24">
           <h2 className="display text-5xl text-sos-coral md:text-7xl">The stages</h2>
+          <p className="mt-4 max-w-md text-base text-cream/80">Each stage has its own sound. Select one to explore its details and past summers.</p>
           <ul className="mt-7 space-y-5">
-            {sosStages.map((s) => (
-              <li key={s.name} className="group border-b border-cream/25 pb-5">
-                <p className="display text-[clamp(2.8rem,6vw,5.5rem)] leading-none transition-colors group-hover:text-sos-cyan">{s.name}</p>
-                <p className="mt-2 text-base text-cream/75">{s.note === "Stage two" || s.note === "Stage three" ? "Festival stage" : s.note}</p>
+            {sosStages.map((stage, index) => (
+              <li key={stage.name} className="border-b border-cream/25 pb-5">
+                <Link to="/festivals/sound-of-summer/stages" search={{stage: ["savanna","coke-studio","jetty"][index]}} className="group flex items-end justify-between gap-3">
+                  <span>
+                    <span className="display block text-[clamp(2.8rem,5vw,5.5rem)] leading-none group-hover:text-sos-cyan">{stage.name}</span>
+                    <span className="mt-2 block text-base text-cream/75">{stage.note === "Stage two" || stage.note === "Stage three" ? "Festival stage" : stage.note}</span>
+                  </span>
+                  <ArrowRight className="mb-1 size-6 shrink-0" aria-hidden="true" />
+                </Link>
               </li>
             ))}
           </ul>
+          <Link to="/festivals/sound-of-summer/stages" className="mt-7 inline-flex items-center gap-3 border-b border-cream pb-2 text-base font-semibold">Explore all stages <ArrowRight className="size-5" aria-hidden="true" /></Link>
         </div>
       </section>
 
@@ -67,6 +74,9 @@ function Sos() {
         <div>
           <h2 id="getting-there" className="display scroll-mt-24 text-5xl md:text-7xl">Getting there</h2>
           <p className="mt-4 text-lg text-muted-foreground">Tidal Pools & Jetty Beach sit at Langstrand, between Walvis Bay and Swakopmund on the B2. Plan a designated driver or shared transport home.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Tidal%20Pools%20Jetty%20Beach%20Langstrand%20Namibia" target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center gap-3 border-b border-sos-cyan pb-2 text-base font-semibold text-sos-cyan">
+            <MapPin className="size-5" aria-hidden="true" /> View location on Google Maps <ExternalLink className="size-4" aria-hidden="true" />
+          </a>
         </div>
         <div>
           <h2 id="faq" className="display mb-4 scroll-mt-24 text-5xl md:text-7xl">FAQ & rules</h2>
