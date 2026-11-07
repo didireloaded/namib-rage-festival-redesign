@@ -59,7 +59,7 @@ function Sos() {
       <section data-reveal id="gallery" className="sos-gallery-section scroll-mt-24 py-16">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="display mb-8 text-5xl md:text-7xl">From past summers</h2>
-          <Gallery items={[photos.sosStage, photos.sosBeach, photos.sosCrowd, photos.nrGallery2, photos.nrGallery4]} />
+          <Gallery items={[photos.sosStage, photos.sosBeach, photos.sosCrowd]} />
         </div>
       </section>
 

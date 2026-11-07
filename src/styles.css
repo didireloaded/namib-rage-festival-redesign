@@ -278,3 +278,19 @@
  .gateway-scene {animation:none;}
  .page-in {animation:none;}
 }
+
+
+/* Masonry-style unequal spans, without shadows, gradients or generic card corners. */
+.gallery-editorial { grid-template-columns:repeat(2,minmax(0,1fr));align-items:start; }
+.gallery-editorial .gallery-thumb:nth-child(3n+1) { grid-column:span 2;aspect-ratio:16/11; }
+.gallery-editorial .gallery-thumb:nth-child(3n+2) { grid-column:span 1;aspect-ratio:4/5; }
+.gallery-editorial .gallery-thumb:nth-child(3n) { grid-column:span 1;aspect-ratio:4/3; }
+@media(min-width:900px) {
+  .gallery-editorial {grid-template-columns:repeat(4,minmax(0,1fr));}
+  .gallery-editorial .gallery-thumb:nth-child(3n+1) {grid-column:span 2;}
+  .gallery-editorial .gallery-thumb:nth-child(3n+2) {grid-column:span 2;aspect-ratio:4/5;}
+  .gallery-editorial .gallery-thumb:nth-child(3n) {grid-column:span 1;}
+}
+/* Authentic Sound of Summer brand uses solids, not the generic gradient badge. */
+.sos-gradient-badge { background:var(--sos-orange)!important;color:var(--sos-deep); }
+.sos-hero-wash { background:rgba(4,28,104,.62)!important; }

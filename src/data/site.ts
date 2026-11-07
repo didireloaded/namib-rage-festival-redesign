@@ -138,8 +138,8 @@ export type PoweredEvent = {
 
 /** Ticketing credits: only add when Howler involvement on that event is confirmed. */
 export const poweredEvents: PoweredEvent[] = [
-  { name: "Sound of Summer", roles: ["Owned"], by: ["nr"], photo: photos.sosStage, to: "/festivals/sound-of-summer" },
-  { name: "Campout Dune Fest", roles: ["Owned"], by: ["nr"], photo: photos.campArt, to: "/festivals/campout" },
+  { name: "Sound of Summer", roles: ["Owned", "Ticketing"], by: ["nr", "howler"], photo: photos.sosStage, to: "/festivals/sound-of-summer" },
+  { name: "Campout Dune Fest", roles: ["Owned", "Ticketing"], by: ["nr", "howler"], photo: photos.campArt, to: "/festivals/campout" },
   { name: "Oktoberfest Namibia", roles: ["Bar operations"], by: ["barb"], photo: null },
   { name: "Balcony Mix", roles: ["Bar operations"], by: ["barb"], photo: null },
   { name: "KosFees", roles: ["Bar operations"], by: ["barb"], photo: null },

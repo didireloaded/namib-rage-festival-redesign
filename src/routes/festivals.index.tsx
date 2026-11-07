@@ -25,7 +25,7 @@ function Festivals() {
           return (
             <article key={f.slug} className={cn("relative flex min-h-[78svh] flex-col justify-end overflow-hidden", sos ? "bg-sos" : "bg-camp-ink")}>
               <Media photo={f.hero} priority={i === 0} sizes="(min-width:768px) 50vw, 100vw" className="absolute inset-0" />
-              <div className={cn("absolute inset-0", sos ? "sos-hero-wash" : "bg-gradient-to-t from-ink via-ink/30 to-transparent")} />
+              <div className={cn("absolute inset-0", sos ? "sos-hero-wash" : "bg-night/55")} />
               <div className="relative p-6 md:p-10">
                 <Sticker className={sos ? "sos-gradient-badge" : "bg-camp text-camp-ink"}>{f.dateSticker}</Sticker>
                 <h2 className="display mt-4 text-6xl md:text-8xl">{f.name}</h2>
@@ -42,7 +42,7 @@ function Festivals() {
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-10">
         <h2 className="display text-5xl md:text-7xl">Past editions</h2>
         <p className="mt-3 mb-8 text-muted-foreground">Moments from our events.</p>
-        <Gallery items={[photos.sosCrowd, photos.sosStage, photos.sosBeach, photos.nrGallery1, photos.nrGallery2, photos.nrGallery3, photos.nrGallery4]} />
+        <Gallery items={[photos.sosCrowd, photos.sosStage, photos.sosBeach]} />
       </section>
     </>
   );
