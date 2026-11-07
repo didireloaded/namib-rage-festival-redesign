@@ -1,14 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { brand as getBrand, type BrandKey, type Festival } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-/** Typographic placeholder until an approved logo file is set in data/site.ts */
+/** Approved logo when available, otherwise an editorial brand wordmark. */
 export function Wordmark({ k, className }: { k: BrandKey; className?: string }) {
   const b = getBrand(k);
   if (b.logo) return <img src={b.logo} alt={`${b.name} logo`} className={cn("h-8 w-auto", className)} />;
   return (
-    <span className={cn("display inline-flex items-baseline gap-1 tracking-tight", className)} title="Wordmark placeholder — replace with approved logo">
+    <span className={cn("display inline-flex items-baseline gap-1 tracking-tight", className)}>
       {b.name}
     </span>
   );
@@ -25,7 +26,7 @@ export function TicketLink({ f, className, children }: { f: Festival; className?
       )}
     >
       {children ?? <>Tickets · {f.name}</>}
-      <span aria-hidden>↗</span>
+      <ArrowUpRight className="size-5 shrink-0" strokeWidth={1.8} aria-hidden="true" />
       <span className="sr-only">(opens Howler in a new tab)</span>
     </a>
   );
@@ -53,7 +54,7 @@ export function CtaLink({ to, children, variant = "light" }: { to: string; child
         variant === "light" ? "bg-cream text-ink" : "border-2 border-cream text-cream hover:bg-cream hover:text-ink",
       )}
     >
-      {children} <span aria-hidden>→</span>
+      {children} <ArrowRight className="size-5 shrink-0" strokeWidth={1.8} aria-hidden="true" />
     </Link>
   );
 }

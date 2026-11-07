@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { brands, company } from "@/data/site";
 
 export function Footer() {
@@ -25,8 +26,8 @@ export function Footer() {
           <div>
             <p className={cn("eyebrow", isSos ? "text-sos-cyan" : "text-muted-foreground")}>Contact</p>
             <p className="mt-3">{company.address}</p>
-            <p>{company.email}</p>
-            <p>{company.phone}</p>
+            <a href={"mailto:"+company.email} className="mt-2 flex items-center gap-2 hover:underline"><Mail className="size-4 shrink-0" aria-hidden="true" />{company.email}</a>
+            <a href={"tel:"+company.phone.replace(/[^\d+]/g,"")} className="mt-2 flex items-center gap-2 hover:underline"><Phone className="size-4 shrink-0" aria-hidden="true" />{company.phone}</a>
           </div>
           <div>
             <p className={cn("eyebrow", isSos ? "text-sos-cyan" : "text-muted-foreground")}>More</p>
@@ -34,12 +35,12 @@ export function Footer() {
               <li><Link to="/work-with-us" className="hover:text-camp">Work with us</Link></li>
               <li><Link to="/partners" className="hover:text-camp">Partners</Link></li>
               <li><Link to="/privacy" className="hover:text-camp">Privacy</Link></li>
-              <li><a href={company.howlerHelp} target="_blank" rel="noopener noreferrer" className="hover:text-camp">Ticket help (Howler) ↗</a></li>
+              <li><a href={company.howlerHelp} target="_blank" rel="noopener noreferrer" className="hover:text-camp">Ticket help (Howler) <ArrowUpRight className="inline-block size-4" aria-hidden="true" /></a></li>
             </ul>
           </div>
         </div>
         <p className={cn("mt-12 text-xs", isSos ? "text-[#c9eefd]" : "text-muted-foreground")}>
-          Redesign review prototype — not the live namibrage.com. Logos shown as wordmark placeholders pending approved files. © {company.name}, est. {company.founded}.
+          &copy; {new Date().getFullYear()} {company.name}. All rights reserved.
         </p>
       </div>
     </footer>
