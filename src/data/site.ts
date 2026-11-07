@@ -67,6 +67,13 @@ export const photos: Record<string, Photo> = {
   campArt: { id: "campArt", src: "https://namibrage.com/events/campout-dune-fest-2026.jpg", alt: "Official Campout Dune Fest 2026 artwork", context: "Campout Dune Fest 2026 — official artwork", credit: "Namib Rage" },
 };
 
+/**
+ * Homepage media is kept separate from festival media.
+ * No clip is connected until a genuine, cleared, playable event montage
+ * has been supplied. null keeps the image-led fallback intact.
+ */
+export const homepageHeroVideo: string | null = null;
+
 export const organiserMark = {
   src: "https://howler-production.s3.eu-west-1.amazonaws.com/uploads/organiser/organiser_logo/10442/WhatsApp_Image_2026-06-17_at_11.52.02.jpeg",
   alt: "Namib Rage × Howler combined organiser mark",

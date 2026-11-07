@@ -8,13 +8,14 @@ import { cn } from "@/lib/utils";
  * Service photos remain Namib Rage event atmosphere until approved,
  * service-specific media is provided.
  */
-const backgrounds: Record<BrandKey, Photo> = {
+const backgrounds: Record<BrandKey, Photo | null> = {
   nr: photos.nrGallery1,
   sos: photos.sosCrowd,
   camp: photos.campArt,
-  barb: photos.nrGallery4,
-  howler: photos.nrGallery2,
-  ft: photos.nrGallery3,
+  // No confirmed service-specific hero photos have been provided.
+  barb: null,
+  howler: null,
+  ft: null,
 };
 
 function Background({ photo, eager = false }: { photo: Photo; eager?: boolean }) {
@@ -80,7 +81,7 @@ function BrandEntrance() {
 
       {previous && (
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <Background photo={backgrounds[previous]} />
+          {backgrounds[previous] && <Background photo={backgrounds[previous]} />}
         </div>
       )}
       <div
@@ -88,7 +89,7 @@ function BrandEntrance() {
         className="gateway-scene pointer-events-none absolute inset-0"
         aria-hidden="true"
       >
-        <Background photo={backgrounds[active]} eager={active === "nr"} />
+        {backgrounds[active] && <Background photo={backgrounds[active]} eager={active === "nr"} />}
       </div>
       <div className="pointer-events-none absolute inset-0 bg-ink/40" aria-hidden="true" />
 

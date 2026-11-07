@@ -44,7 +44,7 @@ export function Media({ photo, className, priority, sizes = "100vw", video, fit 
     return (
       <video
         className={cn("h-full w-full", fitCls, className)}
-        src={video} poster={photo.src} autoPlay muted loop playsInline aria-label={photo.alt}
+        src={video} poster={photo.src} autoPlay muted loop playsInline preload="metadata" aria-label={photo.alt}
       />
     );
   }

@@ -15,8 +15,12 @@ const allTabs = ["All", "Owned", "Bar operations", "Ticketing"] as const;
 
 function Power() {
   const [tab, setTab] = useState<(typeof allTabs)[number]>("All");
-  const tabs = allTabs.filter((t) => t !== "Ticketing" || poweredEvents.some((event) => event.roles.includes("Ticketing")));
-  const list = poweredEvents.filter((e) => tab === "All" || e.roles.includes(tab));
+  const tabs = allTabs.filter((t) => t === "All" || poweredEvents.some((event) => event.photo !== null && event.roles.includes(t)));
+  // A photo-led gallery must only show events with a verified, associated image.
+  // Bar-operation credits without cleared media remain in site.ts and can be
+  // shown as galleries once genuine event-specific photographs are supplied.
+  const photoEvents = poweredEvents.filter((event) => event.photo !== null);
+  const list = photoEvents.filter((event) => tab === "All" || event.roles.includes(tab));
   return (
     <>
       <PageHead eyebrow="Our events and collaborations" title="Events we power" />
@@ -36,7 +40,7 @@ function Power() {
             {list.map((e) => {
               const inner = (
                 <>
-                  {e.photo ? <Media photo={e.photo} sizes="(min-width:1024px) 33vw, 50vw" className="absolute inset-0 transition-transform duration-700 group-hover:scale-105" /> : <span className="display absolute -right-4 top-2 text-[9rem] leading-none text-barb-orange/25">BAR</span>}
+                  {e.photo && <Media photo={e.photo} sizes="(min-width:1024px) 33vw, 50vw" className="absolute inset-0 transition-transform duration-700 group-hover:scale-105" />}
                   <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/85 to-transparent p-4">
                     <div className="flex flex-wrap gap-1">
                       {e.roles.map((r) => <Chip key={r} k={r === "Owned" ? "nr" : "barb"} label={r === "Owned" ? "Owned festival" : "Barbarian · Bar operations"} />)}
@@ -45,7 +49,7 @@ function Power() {
                   </div>
                 </>
               );
-              const cls = cn("group relative block aspect-[4/5] overflow-hidden", e.photo ? "bg-secondary" : "bg-barb");
+              const cls = cn("group relative block aspect-[4/5] overflow-hidden bg-secondary");
               return <li key={e.name}>{e.to ? <Link to={e.to} className={cls}>{inner}</Link> : <div className={cls}>{inner}</div>}</li>;
             })}
           </ul>
