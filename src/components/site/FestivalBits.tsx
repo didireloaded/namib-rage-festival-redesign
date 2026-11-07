@@ -4,13 +4,14 @@ import { TicketLink } from "./Bits";
 import { cn } from "@/lib/utils";
 
 export function MobileTicketBar({ f }: { f: Festival }) {
+  const isSos = f.brand === "sos";
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t border-border bg-ink px-4 py-3 md:hidden">
+    <div className={cn("fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t px-4 py-3 md:hidden", isSos ? "border-sos-cyan/40 bg-sos-deep text-cream" : "border-border bg-ink")}>
       <div className="leading-tight">
         <p className="display text-lg">{f.name}</p>
-        <p className="text-xs text-muted-foreground">{f.dateSticker} 2026 · {f.age}</p>
+        <p className={cn("text-xs", isSos ? "text-sos-cyan" : "text-muted-foreground")}>{f.dateSticker} 2026 · {f.age}</p>
       </div>
-      <TicketLink f={f} className="px-4 py-2 text-base">Tickets</TicketLink>
+      <TicketLink f={f} className={cn("px-4 py-2 text-base", isSos && "bg-sos-orange text-sos-deep")}>Tickets</TicketLink>
     </div>
   );
 }
