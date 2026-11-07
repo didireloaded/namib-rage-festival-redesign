@@ -1,6 +1,7 @@
-import { useState, type ReactNode } from "react";
+import { useId, useState, type ReactNode } from "react";
 import type { Festival } from "@/data/site";
 import { TicketLink } from "./Bits";
+import { cn } from "@/lib/utils";
 
 export function MobileTicketBar({ f }: { f: Festival }) {
   return (
@@ -16,18 +17,32 @@ export function MobileTicketBar({ f }: { f: Festival }) {
 
 export function Faq({ items }: { items: { q: string; a: ReactNode }[] }) {
   const [open, setOpen] = useState<number | null>(0);
+  const id = useId();
   return (
     <dl className="divide-y divide-border border-y border-border">
-      {items.map((it, i) => (
-        <div key={it.q}>
-          <dt>
-            <button className="display flex w-full justify-between py-5 text-left text-2xl md:text-3xl" aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)}>
-              {it.q}<span aria-hidden>{open === i ? "−" : "+"}</span>
-            </button>
-          </dt>
-          {open === i && <dd className="pb-5 text-muted-foreground">{it.a}</dd>}
-        </div>
-      ))}
+      {items.map((item, index) => {
+        const expanded = open === index;
+        const panelId = id + "-answer-" + index;
+        return (
+          <div key={item.q}>
+            <dt>
+              <button
+                type="button"
+                className="display flex w-full items-center justify-between gap-4 py-5 text-left text-2xl md:text-3xl"
+                aria-expanded={expanded}
+                aria-controls={panelId}
+                onClick={() => setOpen(expanded ? null : index)}
+              >
+                {item.q}
+                <span className={cn("shrink-0 text-3xl transition-transform duration-200", expanded && "rotate-45")} aria-hidden="true">+</span>
+              </button>
+            </dt>
+            <dd id={panelId} className={cn("faq-answer grid", expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")} aria-hidden={!expanded} inert={!expanded}>
+              <div className="overflow-hidden"><div className="pb-5 leading-relaxed text-muted-foreground">{item.a}</div></div>
+            </dd>
+          </div>
+        );
+      })}
     </dl>
   );
 }
@@ -35,10 +50,10 @@ export function Faq({ items }: { items: { q: string; a: ReactNode }[] }) {
 export function FactRow({ items }: { items: [string, string][] }) {
   return (
     <dl className="grid grid-cols-2 gap-px bg-border md:grid-cols-4">
-      {items.map(([k, v]) => (
-        <div key={k} className="bg-background p-5">
-          <dt className="eyebrow text-muted-foreground">{k}</dt>
-          <dd className="display mt-2 text-2xl md:text-3xl">{v}</dd>
+      {items.map(([name, value]) => (
+        <div key={name} className="bg-background p-5">
+          <dt className="eyebrow text-muted-foreground">{name}</dt>
+          <dd className="display mt-2 text-2xl md:text-3xl">{value}</dd>
         </div>
       ))}
     </dl>

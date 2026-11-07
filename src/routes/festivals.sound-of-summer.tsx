@@ -23,7 +23,7 @@ function Sos() {
         <div className="relative p-5 md:p-10">
           <Sticker className="bg-sos text-ink">28 Dec 2026</Sticker>
           <Sticker className="ml-2 rotate-3 bg-sos-coral text-ink">18+</Sticker>
-          <h1 className="display mt-4 text-[17vw] leading-[0.82] md:text-[11rem]">Sound of<br /><span className="text-sos">Summer</span></h1>
+          <h1 className="hero-title-in display mt-4 text-[17vw] leading-[0.82] md:text-[11rem]">Sound of<br /><span className="text-sos">Summer</span></h1>
           <p className="mt-3 text-lg">{f.venue}, {f.area} · {f.times}</p>
           <TicketLink f={f} className="mt-5 hidden md:inline-flex">Get tickets on Howler</TicketLink>
         </div>

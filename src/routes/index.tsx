@@ -130,7 +130,7 @@ function BrandEntrance() {
             <span key={item.key} className="block h-1.5 overflow-hidden bg-cream/30">
               <span
                 className={cn(
-                  "block h-full w-full origin-left transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  "block h-full w-full origin-left transition-transform duration-[320ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
                   item.accentClass,
                   index <= activeIndex ? "scale-x-100" : "scale-x-0",
                 )}

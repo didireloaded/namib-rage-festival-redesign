@@ -186,3 +186,8 @@
  .lightbox-enter,.lightbox-media,.nav-panel-enter {animation:none;}
  .faq-answer {transition:none;}
 }
+
+/* First-viewport entrance is immediate, without a faux loading sequence. */
+.hero-title-in { animation:hero-title-in 350ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes hero-title-in { from { opacity:.65;transform:translate3d(0,12px,0); } to {opacity:1;transform:translate3d(0,0,0);} }
+@media (prefers-reduced-motion:reduce) { .hero-title-in {animation:none;} }

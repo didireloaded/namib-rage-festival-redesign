@@ -22,7 +22,7 @@ function Campout() {
         </div>
         <div className="flex flex-col justify-center p-5 md:p-12">
           <div><Sticker className="bg-camp text-camp-ink">31 Dec 2026</Sticker></div>
-          <h1 className="display mt-4 text-[16vw] leading-[0.82] text-camp md:text-[8rem]">Campout<br /><span className="text-cream">Dune Fest</span></h1>
+          <h1 className="hero-title-in display mt-4 text-[16vw] leading-[0.82] text-camp md:text-[8rem]">Campout<br /><span className="text-cream">Dune Fest</span></h1>
           <p className="mt-3 text-lg">{f.dateLong} · {f.venue}, {f.area} · 18+</p>
           <TicketLink f={f} className="mt-6 hidden self-start md:inline-flex">Get tickets on Howler</TicketLink>
         </div>
