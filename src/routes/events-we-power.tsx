@@ -19,7 +19,7 @@ function Power() {
   const list = poweredEvents.filter((e) => tab === "All" || e.roles.includes(tab));
   return (
     <>
-      <PageHead eyebrow="Credits, labelled precisely" title="Events we power" />
+      <PageHead eyebrow="Our events and collaborations" title="Events we power" />
       <div role="tablist" aria-label="Filter events" className="mx-auto flex max-w-7xl flex-wrap gap-2 px-5 md:px-10">
         {tabs.map((t) => (
           <button key={t} role="tab" aria-selected={tab === t} onClick={() => setTab(t)}

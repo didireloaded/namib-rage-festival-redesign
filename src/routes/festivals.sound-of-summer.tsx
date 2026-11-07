@@ -41,7 +41,7 @@ function Sos() {
               <p className="eyebrow">{a.billing}</p>
             </div>
           ))}
-          <p className="mt-6 text-sm text-muted-foreground">More artists announced once approved.</p>
+          <p className="mt-6 text-sm text-muted-foreground">More artists to be announced.</p>
         </div>
         <div id="stages" className="scroll-mt-24">
           <h2 className="display text-5xl text-sos-coral md:text-7xl">The stages</h2>

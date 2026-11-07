@@ -30,7 +30,7 @@ function Campout() {
       </section>
 
       <FactRow items={[["Dates", "31 Dec – 1 Jan"], ["Gates", "From 12:00"], ["Where", "Seukelduine"], ["Age", "18+ only"]]} />
-      <p className="mx-auto max-w-7xl px-5 pt-4 text-sm text-muted-foreground md:px-10">Closing and music times are pending approval.</p>
+      <p className="mx-auto max-w-7xl px-5 pt-4 text-sm text-muted-foreground md:px-10">Final closing and music times will be announced ahead of the festival.</p>
 
       <section data-reveal id="camping" className="scroll-mt-24 bg-camp py-20 text-camp-ink">
         <div className="mx-auto max-w-7xl px-5 md:px-10">

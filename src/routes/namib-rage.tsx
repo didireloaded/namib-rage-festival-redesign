@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { brands, festivals, photos, poweredEvents, sponsors } from "@/data/site";
+import { brands, festivals, photos, poweredEvents } from "@/data/site";
 import { Credit, Media } from "@/components/site/Media";
 import { Chip, CtaLink, Sticker, TicketLink, Wordmark } from "@/components/site/Bits";
 import { cn } from "@/lib/utils";
