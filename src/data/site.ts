@@ -37,7 +37,7 @@ export const brands: Brand[] = [
   { key: "camp", name: "Campout Dune Fest", short: "Campout", role: "Owned festival", to: "/festivals/campout", logo: null, accentClass: "bg-camp", textOnAccent: "text-camp-ink" },
   { key: "barb", name: "Barbarian", short: "Bar Mgmt", role: "Service division", to: "/services/bar-management", logo: null, accentClass: "bg-barb", textOnAccent: "text-cream" },
   { key: "howler", name: "Howler", short: "Ticketing", role: "Ticketing & cashless partner", to: "/services/ticketing-cashless", logo: null, accentClass: "bg-howler", textOnAccent: "text-cream" },
-  { key: "ft", name: "Fast Track", short: "Permits", role: "Service division", to: "/services/fast-track", logo: null, accentClass: "bg-ft", textOnAccent: "text-cream" },
+  { key: "ft", name: "Fast Track", short: "Permits", role: "Service division", to: "/services/fast-track", logo: null, accentClass: "bg-ft", textOnAccent: "text-night" },
 ];
 
 export const brand = (k: BrandKey) => brands.find((b) => b.key === k)!;
@@ -160,3 +160,6 @@ export const fastTrackServices = [
   "Visa services", "Work permits", "Liquor licences", "Noise permits",
   "NASCAM music licences", "Flight bookings", "Artist bookings",
 ];
+
+/** Approved operational photos for Howler’s three steps. None supplied yet. */
+export const howlerFlowMedia: (Photo | null)[] = [null, null, null];

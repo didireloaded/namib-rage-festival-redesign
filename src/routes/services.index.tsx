@@ -3,7 +3,6 @@ import { brand, type BrandKey } from "@/data/site";
 import { Wordmark } from "@/components/site/Bits";
 import { seo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/services/")({
   head: () => seo("Event services", "Barbarian bar management, Howler ticketing & cashless, and Fast Track permits and bookings."),
@@ -26,11 +25,11 @@ function Services() {
       {rows.map(({ k, line }) => {
         const b = brand(k);
         return (
-          <Link key={k} to={b.to} className={cn("group flex flex-col justify-between gap-6 px-5 py-12 transition-all md:flex-row md:items-end md:px-10 md:py-16", b.accentClass, b.textOnAccent)}>
+          <Link key={k} to={b.to} className={cn("group flex flex-col justify-between gap-6 px-5 py-12 md:flex-row md:items-end md:px-10 md:py-16", b.accentClass, b.textOnAccent)}>
             <div className="flex items-baseline">
-              <Wordmark k={k} className="text-[clamp(3.3rem,7vw,7rem)] leading-none transition-transform group-hover:translate-x-2" />
+              <Wordmark k={k} className="text-[clamp(3.3rem,7vw,7rem)] leading-none " />
             </div>
-            <p className="display text-2xl md:text-3xl">{line} <ArrowRight className="inline-block size-6" aria-hidden="true" /></p>
+            <p className="display text-2xl md:text-3xl">{line} </p>
           </Link>
         );
       })}
